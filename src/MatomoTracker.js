@@ -19,6 +19,7 @@ class MatomoTracker {
     this.initialize(options);
   }
 
+  // Initializes the Matomo Tracker
   initialize({ urlBase, siteId, trackerUrl, srcUrl }) {
     window._paq = window._paq || [];
 
@@ -43,6 +44,7 @@ class MatomoTracker {
     }
   }
 
+  // Tracks events based on data attributes
   trackEvents() {
     const clickEvents = [
       ...document.querySelectorAll('[data-matomo-event="click"]')
@@ -60,34 +62,43 @@ class MatomoTracker {
     });
   }
 
-  trackEvent({
-    action,
-    name,
-    value,
-    documentTitle = window.document.title,
-    href = window.location,
-    customDimensions = false
-  }) {
+  // Tracks events
+  // https://matomo.org/docs/event-tracking/#tracking-events
+  trackEvent({ action, name, value, ...otherParams }) {
     if (!action) {
       throw new Error(`Error: action is not defined.`);
     }
-    this.track(
-      [TRACK_TYPES.TRACK_EVENT, action, name, value],
-      documentTitle,
-      href,
-      customDimensions
-    );
+    this.track({
+      data: [TRACK_TYPES.TRACK_EVENT, action, name, value],
+      ...otherParams
+    });
   }
 
-  trackPageView({
+  // Tracks site search
+  // https://developer.matomo.org/guides/tracking-javascript-guide#internal-search-tracking
+  trackSiteSearch({ keyword, category, count, ...otherParams }) {
+    if (!keyword) {
+      throw new Error(`Error: keyword is not defined.`);
+    }
+    this.track({
+      data: [TRACK_TYPES.TRACK_SEARCH, keyword, category, count],
+      ...otherParams
+    });
+  }
+
+  // Tracks page views
+  // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
+  trackPageView(params) {
+    this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params });
+  }
+
+  // Sends the tracked page/view/search to Matomo
+  track({
+    data = [],
     documentTitle = window.document.title,
     href = window.location,
     customDimensions = false
   }) {
-    this.track([TRACK_TYPES.TRACK_VIEW], documentTitle, href, customDimensions);
-  }
-
-  track(data = [], documentTitle, href, customDimensions = false) {
     if (data.length) {
       if (customDimensions.length) {
         customDimensions.map(customDimension =>
