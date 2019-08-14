@@ -1,29 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-<button
-        data-matomo-event="click"
-        data-matomo-query="123"
-        data-matomo-category="sample"
-        type="button"
->
-    Track me!
-</button>
+  </head>
+  <body>
+    <button
+      data-matomo-event="click"
+      data-matomo-action="test"
+      data-matomo-name="sample"
+      data-matomo-value="123"
+      type="button"
+    >
+      Track me!
+    </button>
 
-<script src="lib/index.js"></script>
-<script>
-  const MatomoInstance = new window.MatomoTracker({
-    urlBase: 'https://piwik.data.amsterdam.nl/'
-  })
+    <button
+      onclick="MatomoInstance.trackEvent({ action: 'test', name: 'sample', value: '123'})"
+    >
+      Track me!
+    </button>
 
-  MatomoInstance.trackEvents()
-</script>
-</body>
+    <script src="lib/index.js"></script>
+    <script>
+      const MatomoInstance = new window.MatomoTracker({
+        urlBase: "https://analytics.data.amsterdam.nl/",
+        siteId: 1
+      });
+
+      MatomoInstance.trackEvents();
+    </script>
+  </body>
 </html>
