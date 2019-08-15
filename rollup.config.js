@@ -7,5 +7,5 @@ export default {
     file: "./bundle.min.js",
     format: "iife"
   },
-  plugins: [typescript({ target: "es5" }), uglify()]
+  plugins: [typescript({ target: "es5", declarationMap: false }), uglify()]
 };

@@ -21,6 +21,7 @@
   },
   "files": [
     "lib",
+    "bundle.min.js",
     "README.md"
   ],
   "contributors": [
