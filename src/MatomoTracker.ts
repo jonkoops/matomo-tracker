@@ -16,11 +16,11 @@ class MatomoTracker {
       new Error("Matomo urlBase is not set.");
     }
 
-    this.initialize(options);
+    MatomoTracker.initialize(options);
   }
 
   // Initializes the Matomo Tracker
-  initialize({ urlBase, siteId, trackerUrl, srcUrl }: UserOptions) {
+  static initialize({ urlBase, siteId, trackerUrl, srcUrl }: UserOptions) {
     window._paq = window._paq || [];
 
     if (window._paq.length === 0) {
@@ -48,22 +48,23 @@ class MatomoTracker {
 
   // Tracks events based on data attributes
   trackEvents() {
-    const clickEvents = [
-      ...document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]')
-    ];
-
-    clickEvents.forEach(element => {
-      element.addEventListener("click", () => {
-        const { matomoAction, matomoName, matomoValue } = element.dataset;
-        if (matomoAction) {
-          this.trackEvent({
-            action: matomoAction,
-            name: matomoName,
-            value: matomoValue
-          });
-        }
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]')
+    );
+    if (elements.length) {
+      elements.forEach(element => {
+        element.addEventListener("click", () => {
+          const { matomoAction, matomoName, matomoValue } = element.dataset;
+          if (matomoAction) {
+            this.trackEvent({
+              action: matomoAction,
+              name: matomoName,
+              value: matomoValue
+            });
+          }
+        });
       });
-    });
+    }
   }
 
   // Tracks events

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "yarn build -w"
+    "start": "yarn build -w",
+    "bundle": "rollup -c rollup.config.js"
   },
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
@@ -27,6 +28,10 @@
     "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"
   ],
   "devDependencies": {
+    "rollup": "^1.19.4",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "tslib": "^1.10.0",
     "typescript": "^3.5.3"
   }
 }

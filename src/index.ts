@@ -1,3 +1,2 @@
-window.MatomoTracker = import('./MatomoTracker')
-
-
+import MatomoTracker from "./MatomoTracker";
+window.MatomoTracker = MatomoTracker;

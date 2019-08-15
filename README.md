@@ -4,7 +4,31 @@ Stand alone library for using matamo tracking in frontend projects
 
 ## Installation
 
-_Update when package is released_
+Matomo Tracker can be used two ways:
+
+1. Installing via npm: `npm i --save @datapunt/matomo-tracker-js` of via yarn `yarn add -S @datapunt/matomo-tracker-js`
+```js
+import MatomoTracker from './MatomoTracker'
+
+const MatomoInstance = new window.MatomoTracker({ ... })
+```
+
+2. By downloading the `bundle.min.js` from this repo and load it in your html as a script:
+
+```html
+<script src="./bundle.min.js"></script>
+<script>
+  const MatomoInstance = new window.MatomoTracker({
+    /* setup */
+  });
+
+  // Load the event listeners
+  MatomoInstance.trackEvents();
+
+  // Track page views
+  MatomoInstance.trackPageView();
+</script>
+```
 
 ## Usage
 
@@ -44,61 +68,60 @@ MatomoInstance.trackEvent({
 By default the Matomo Tracker will send the window's document title and location, but you're able to send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
 
 ```js
+const MatomoTracker = require("MatomoTracker");
 
-require('MatomoTracker');
-
-const MatomoInstance = MatomoTracker({ /* setup */ });
+const MatomoInstance = new MatomoTracker({
+  /* setup */
+});
 
 MatomoInstance.trackPageView({
-  documentTitle: 'Page title', // optional
-  href: 'https://LINK.TO.PAGE', // optional
+  documentTitle: "Page title", // optional
+  href: "https://LINK.TO.PAGE", // optional
   customDimensions: [
     {
       id: 1,
-      value: 'loggedIn'
+      value: "loggedIn"
     }
   ] // optional
-})
-})
+});
 
 MatomoInstance.trackEvent({
-  action: 'test',
-  name: 'sample', // optional
-  value: '123' // optional
-  documentTitle: 'Page title', // optional
-  href: 'https://LINK.TO.PAGE', // optional
+  action: "test",
+  name: "sample", // optional
+  value: "123", // optional
+  documentTitle: "Page title", // optional
+  href: "https://LINK.TO.PAGE", // optional
   customDimensions: [
     {
       id: 1,
-      value: 'loggedIn'
+      value: "loggedIn"
     }
   ] // optional
-})
-
+});
 ```
 
 Next to the tracking of events, this project also supports tracking site searches:
 
 ```js
+const MatomoTracker = require("MatomoTracker");
 
-require('MatomoTracker');
-
-const MatomoInstance = MatomoTracker({ /* setup */ });
+const MatomoInstance = MatomoTracker({
+  /* setup */
+});
 
 MatomoInstance.trackSiteSearch({
-  keyword: 'test',
-  category: 'blog', // optional
-  count: 4 // optional
-  documentTitle: 'Page title', // optional
-  href: 'https://LINK.TO.PAGE', // optional
+  keyword: "test",
+  category: "blog", // optional
+  count: 4, // optional
+  documentTitle: "Page title", // optional
+  href: "https://LINK.TO.PAGE", // optional
   customDimensions: [
     {
       id: 1,
-      value: 'loggedIn'
+      value: "loggedIn"
     }
   ] // optional
-})
-
+});
 ```
 
 Or if you want to stay away from inline JavaScript events, this project can be used to track events from buttons with data attributes:
@@ -119,7 +142,7 @@ Or if you want to stay away from inline JavaScript events, this project can be u
     </button>
 
 
-    <script src="lib/index.js"></script>
+    <script src="./some-dir/bundle.min.js"></script>
     <script>
       const MatomoInstance = new window.MatomoTracker({ /* setup */ });
 
