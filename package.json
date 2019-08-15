@@ -1,13 +1,13 @@
 {
   "name": "@datapunt/matomo-tracker-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Matomo tracker for frontend projects",
   "main": "lib/MatomoTracker.js",
   "scripts": {
     "build": "tsc -b",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "yarn build -w",
-    "bundle": "rollup -c rollup.config.js"
+    "bundle": "rollup -c rollup.config.js",
+    "prepublish": "yarn build && yarn bundle"
   },
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
@@ -21,6 +21,7 @@
   },
   "files": [
     "lib",
+    "bundle.min.js",
     "README.md"
   ],
   "contributors": [
