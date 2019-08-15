@@ -2,8 +2,8 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    MatomoTracker: './src/MatomoTracker.js',
+    index: './lib/index.js',
+    MatomoTracker: './lib/MatomoTracker.js',
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
