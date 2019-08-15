@@ -4,10 +4,10 @@
   "description": "Matomo tracker for frontend projects",
   "main": "lib/MatomoTracker.js",
   "scripts": {
-    "build": "tsc -b",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -b & yarn bundle",
     "start": "yarn build -w",
-    "bundle": "rollup -c rollup.config.js"
+    "bundle": "rollup -c rollup.config.js",
+    "prepublish": "yarn build"
   },
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
