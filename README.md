@@ -8,7 +8,7 @@ _Update when package is released_
 
 ## Usage
 
-Before you're able to use this Matomo Tracker you need to initialize Matomo with you project specific details.
+Before you're able to use this Matomo Tracker you need to initialize Matomo with your project specific details.
 
 **Initialize:**
 

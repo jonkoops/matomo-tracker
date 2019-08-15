@@ -1,3 +1,3 @@
-window.MatomoTracker = require('./MatomoTracker').default
+window.MatomoTracker = import('./MatomoTracker')
 
 
