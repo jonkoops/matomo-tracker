@@ -4,10 +4,10 @@
   "description": "Matomo tracker for frontend projects",
   "main": "lib/MatomoTracker.js",
   "scripts": {
-    "build": "tsc -b & yarn bundle",
+    "build": "tsc -b",
     "start": "yarn build -w",
     "bundle": "rollup -c rollup.config.js",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build && yarn bundle"
   },
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
