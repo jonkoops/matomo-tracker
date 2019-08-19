@@ -4,11 +4,11 @@ Stand alone library for using matamo tracking in frontend projects
 
 ## Installation
 
-Matomo Tracker can be used two ways:
+Matomo Tracker can be used in two ways:
 
-1. Installing via npm: `npm i --save @datapunt/matomo-tracker-js` of via yarn `yarn add -S @datapunt/matomo-tracker-js`
+1. Installing with npm: `npm i --save @datapunt/matomo-tracker-js` or yarn `yarn add -S @datapunt/matomo-tracker-js`
 ```js
-import MatomoTracker from './MatomoTracker'
+import MatomoTracker from '@datapunt/matomo-tracker-js'
 
 const MatomoInstance = new window.MatomoTracker({ ... })
 ```
@@ -48,9 +48,9 @@ const MatomoInstance = new window.MatomoTracker({
 After initialization you can use the Matomo Tracker to track events and page views like this:
 
 ```js
-require("MatomoTracker");
+import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = MatomoTracker({
+const MatomoInstance = new MatomoTracker({
   /* setup */
 });
 
@@ -68,7 +68,7 @@ MatomoInstance.trackEvent({
 By default the Matomo Tracker will send the window's document title and location, but you're able to send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
 
 ```js
-const MatomoTracker = require("MatomoTracker");
+import MatomoTracker from '@datapunt/matomo-tracker-js'
 
 const MatomoInstance = new MatomoTracker({
   /* setup */
@@ -103,9 +103,9 @@ MatomoInstance.trackEvent({
 Next to the tracking of events, this project also supports tracking site searches:
 
 ```js
-const MatomoTracker = require("MatomoTracker");
+import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = MatomoTracker({
+const MatomoInstance = new MatomoTracker({
   /* setup */
 });
 
