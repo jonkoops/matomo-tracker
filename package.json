@@ -1,14 +1,18 @@
 {
   "name": "@datapunt/matomo-tracker-js",
   "version": "0.0.3",
+  "private": true,
   "description": "Matomo tracker for frontend projects",
   "main": "lib/MatomoTracker.js",
   "scripts": {
-    "build": "tsc -b",
+    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b packages/js",
     "start": "yarn build -w",
-    "bundle": "rollup -c rollup.config.js",
-    "prepublish": "yarn build && yarn bundle"
+    "prepublish": "yarn build",
+    "postinstall": "lerna link"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
   "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
@@ -28,12 +32,15 @@
     "Chris van Mook <chrisvanmook@gmail.com> ()",
     "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"
   ],
-  "keyword": ["matomo", "piwik", "tracking", "analytics", "client"],
+  "keyword": [
+    "matomo",
+    "piwik",
+    "tracking",
+    "analytics",
+    "client"
+  ],
   "devDependencies": {
-    "rollup": "^1.19.4",
-    "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-uglify": "^6.0.2",
-    "tslib": "^1.10.0",
+    "lerna": "^3.16.4",
     "typescript": "^3.5.3"
   }
 }

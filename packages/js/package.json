@@ -1,7 +1,6 @@
 {
   "name": "@datapunt/matomo-tracker-js",
   "version": "0.0.3",
-  "private": true,
   "description": "Matomo tracker for frontend projects",
   "main": "lib/MatomoTracker.js",
   "scripts": {
@@ -37,6 +36,7 @@
   "devDependencies": {
     "rollup": "^1.19.4",
     "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "tslib": "^1.10.0"
   }
 }
