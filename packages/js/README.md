@@ -1,6 +1,6 @@
-# Matomo Tracker
+# Matomo Tracker (JavaScript)
 
-Stand alone library for using matamo tracking in frontend projects
+Stand alone library for using Matamo tracking in frontend projects
 
 ## Installation
 

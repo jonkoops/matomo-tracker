@@ -5,7 +5,8 @@ export default {
   input: "src/index.ts",
   output: {
     file: "bundle.min.js",
-    format: "iife"
+    format: "iife",
+    name: "MatomoTracker"
   },
   plugins: [typescript({ target: "es5", declarationMap: false }), uglify()]
 };

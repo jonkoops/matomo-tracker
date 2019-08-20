@@ -19,7 +19,7 @@ export interface UserOptions {
 
 export interface TrackPageViewParams {
   documentTitle?: string;
-  href?: string | Location;
+  href?: any;
   customDimensions?: boolean | [];
 }
 

@@ -2,7 +2,7 @@
   "name": "@datapunt/matomo-tracker-js",
   "version": "0.0.8",
   "description": "Matomo tracker for frontend projects",
-  "main": "lib/MatomoTracker.js",
+  "main": "lib/index.js",
   "scripts": {
     "bundle": "rollup -c rollup.config.js",
     "build": "yarn bundle"

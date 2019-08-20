@@ -1,18 +1,11 @@
 {
-  "name": "@datapunt/matomo-tracker-js",
-  "version": "0.0.3",
-  "private": true,
-  "description": "Matomo tracker for frontend projects",
-  "main": "lib/MatomoTracker.js",
+  "name": "@datapunt/matomo-tracker-react",
+  "version": "0.0.0",
+  "description": "Matomo tracker for react projects",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b packages/*",
-    "start": "yarn build -w",
-    "prepublish": "yarn build",
-    "postinstall": "lerna link"
+    "start": "tsc -b"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
   "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
@@ -25,7 +18,6 @@
   },
   "files": [
     "lib",
-    "bundle.min.js",
     "README.md"
   ],
   "contributors": [
@@ -37,10 +29,12 @@
     "piwik",
     "tracking",
     "analytics",
-    "client"
+    "react",
+    "react native"
   ],
-  "devDependencies": {
-    "lerna": "^3.16.4",
-    "typescript": "^3.5.3"
+  "dependencies": {
+    "@datapunt/matomo-tracker-js": "0.0.8",
+    "@types/react": "^16.9.2",
+    "react": "^16.9.0"
   }
 }
