@@ -1,0 +1,44 @@
+{
+  "name": "@datapunt/matomo-tracker-js",
+  "version": "0.0.8",
+  "description": "Matomo tracker for frontend projects",
+  "main": "lib/index.js",
+  "scripts": {
+    "bundle": "rollup -c rollup.config.js",
+    "build": "yarn bundle"
+  },
+  "license": "MPL-2.0",
+  "author": "Datapunt Amsterdam",
+  "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amsterdam/matomo-tracker.git",
+    "directory": "packages/js"
+  },
+  "bugs": {
+    "url": "https://github.com/Amsterdam/matomo-tracker/issues"
+  },
+  "files": [
+    "lib",
+    "bundle.min.js",
+    "README.md"
+  ],
+  "contributors": [
+    "Chris van Mook <chrisvanmook@gmail.com> ()",
+    "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"
+  ],
+  "keyword": [
+    "matomo",
+    "piwik",
+    "tracking",
+    "analytics",
+    "client"
+  ],
+  "devDependencies": {
+    "rollup": "^1.19.4",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "tslib": "^1.10.0"
+  },
+  "gitHead": "34721942d3041705775a4b6f0f04f66c33d8d1f2"
+}

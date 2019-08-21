@@ -1,0 +1,41 @@
+{
+  "name": "@datapunt/matomo-tracker-react",
+  "version": "0.0.8",
+  "description": "Matomo tracker for react projects",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "tsc -b"
+  },
+  "license": "MPL-2.0",
+  "author": "Datapunt Amsterdam",
+  "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amsterdam/matomo-tracker.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/Amsterdam/matomo-tracker/issues"
+  },
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "contributors": [
+    "Chris van Mook <chrisvanmook@gmail.com> ()",
+    "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"
+  ],
+  "keyword": [
+    "matomo",
+    "piwik",
+    "tracking",
+    "analytics",
+    "react",
+    "react native"
+  ],
+  "dependencies": {
+    "@datapunt/matomo-tracker-js": "0.0.8",
+    "@types/react": "^16.9.2",
+    "react": "^16.9.0"
+  }
+}
