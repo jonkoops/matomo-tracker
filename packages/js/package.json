@@ -12,7 +12,8 @@
   "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amsterdam/matomo-tracker.git"
+    "url": "git+https://github.com/Amsterdam/matomo-tracker.git",
+    "directory": "packages/js"
   },
   "bugs": {
     "url": "https://github.com/Amsterdam/matomo-tracker/issues"
@@ -39,5 +40,5 @@
     "rollup-plugin-uglify": "^6.0.2",
     "tslib": "^1.10.0"
   },
-  "gitHead": "567828b2f87b0ce947f3edeb6e75c34cf70d7624"
+  "gitHead": "34721942d3041705775a4b6f0f04f66c33d8d1f2"
 }

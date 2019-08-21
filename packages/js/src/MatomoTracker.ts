@@ -13,7 +13,7 @@ class MatomoTracker {
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
     if (!options.urlBase) {
-      new Error('Matomo urlBase is not set.')
+      throw new Error('Matomo urlBase is not set.')
     }
 
     MatomoTracker.initialize(options)
@@ -25,10 +25,7 @@ class MatomoTracker {
 
     if (window._paq.length === 0) {
       window._paq.push(['enableLinkTracking'])
-      window._paq.push([
-        'setTrackerUrl',
-        trackerUrl ? trackerUrl : `${urlBase}matomo.php`,
-      ])
+      window._paq.push(['setTrackerUrl', trackerUrl || `${urlBase}matomo.php`])
       window._paq.push(['setSiteId', siteId])
 
       const doc = document
@@ -38,7 +35,7 @@ class MatomoTracker {
       scriptElement.type = 'text/javascript'
       scriptElement.async = true
       scriptElement.defer = true
-      scriptElement.src = srcUrl ? srcUrl : `${urlBase}matomo.js`
+      scriptElement.src = srcUrl || `${urlBase}matomo.js`
 
       if (scripts && scripts.parentNode) {
         scripts.parentNode.insertBefore(scriptElement, scripts)

@@ -1,6 +1,4 @@
-import { default as MatomoContext } from './MatomoContext'
-import { default as MatomoProvider } from './MatomoProvider'
-import { default as createInstance } from './instance'
-import { default as useMatomo } from './useMatomo'
-
-export { MatomoContext, MatomoProvider, createInstance, useMatomo }
+export { default as MatomoContext } from './MatomoContext'
+export { default as MatomoProvider } from './MatomoProvider'
+export { default as createInstance } from './instance'
+export { default as useMatomo } from './useMatomo'

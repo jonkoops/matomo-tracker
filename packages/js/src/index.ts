@@ -1,7 +1,7 @@
 import MatomoTracker from './MatomoTracker'
-window.MatomoTracker = MatomoTracker
-
 import * as types from './types'
+
+window.MatomoTracker = MatomoTracker
 
 export default MatomoTracker
 

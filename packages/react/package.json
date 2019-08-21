@@ -1,6 +1,6 @@
 {
   "name": "@datapunt/matomo-tracker-react",
-  "version": "0.0.0",
+  "version": "0.0.8",
   "description": "Matomo tracker for react projects",
   "main": "lib/index.js",
   "scripts": {
@@ -11,7 +11,8 @@
   "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amsterdam/matomo-tracker.git"
+    "url": "git+https://github.com/Amsterdam/matomo-tracker.git",
+    "directory": "packages/react"
   },
   "bugs": {
     "url": "https://github.com/Amsterdam/matomo-tracker/issues"

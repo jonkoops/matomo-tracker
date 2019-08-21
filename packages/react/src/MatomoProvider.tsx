@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 import { MatomoInstance } from './types'
-import MatomoContext from "./MatomoContext";
+import MatomoContext from './MatomoContext'
 
 type Props = {
   children: React.ReactNode
@@ -8,9 +8,9 @@ type Props = {
 }
 
 const MatomoProvider: React.FC<Props> = ({ children, value }) => {
-  const Context = MatomoContext;
+  const Context = MatomoContext
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
-};
+  return <Context.Provider value={value}>{children}</Context.Provider>
+}
 
-export default MatomoProvider;
+export default MatomoProvider
