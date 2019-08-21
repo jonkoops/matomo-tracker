@@ -13,8 +13,8 @@ cache:
 install:
   - yarn
 script:
-  - yarn lint
   - yarn build
+  - yarn lint
 branches:
   only:
     - master
