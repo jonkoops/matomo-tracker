@@ -1,0 +1,5 @@
+packages/**/lib/
+packages/**/node_modules/
+*.d.ts
+*.js
+node_modules/

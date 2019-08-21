@@ -4,44 +4,44 @@ import {
   TrackParams,
   TrackPageViewParams,
   TrackEventParams,
-  TrackSiteSearchParams
-} from "./types";
+  TrackSiteSearchParams,
+} from './types'
 
-import { defaultOptions, TRACK_TYPES } from "./constants";
+import { defaultOptions, TRACK_TYPES } from './constants'
 
 class MatomoTracker {
   constructor(userOptions: UserOptions) {
-    const options = { ...defaultOptions, ...userOptions };
+    const options = { ...defaultOptions, ...userOptions }
     if (!options.urlBase) {
-      new Error("Matomo urlBase is not set.");
+      new Error('Matomo urlBase is not set.')
     }
 
-    MatomoTracker.initialize(options);
+    MatomoTracker.initialize(options)
   }
 
   // Initializes the Matomo Tracker
   static initialize({ urlBase, siteId, trackerUrl, srcUrl }: UserOptions) {
-    window._paq = window._paq || [];
+    window._paq = window._paq || []
 
     if (window._paq.length === 0) {
-      window._paq.push(["enableLinkTracking"]);
+      window._paq.push(['enableLinkTracking'])
       window._paq.push([
-        "setTrackerUrl",
-        trackerUrl ? trackerUrl : `${urlBase}matomo.php`
-      ]);
-      window._paq.push(["setSiteId", siteId]);
+        'setTrackerUrl',
+        trackerUrl ? trackerUrl : `${urlBase}matomo.php`,
+      ])
+      window._paq.push(['setSiteId', siteId])
 
-      const doc = document;
-      const scriptElement = doc.createElement("script");
-      const scripts = doc.getElementsByTagName("script")[0];
+      const doc = document
+      const scriptElement = doc.createElement('script')
+      const scripts = doc.getElementsByTagName('script')[0]
 
-      scriptElement.type = "text/javascript";
-      scriptElement.async = true;
-      scriptElement.defer = true;
-      scriptElement.src = srcUrl ? srcUrl : `${urlBase}matomo.js`;
+      scriptElement.type = 'text/javascript'
+      scriptElement.async = true
+      scriptElement.defer = true
+      scriptElement.src = srcUrl ? srcUrl : `${urlBase}matomo.js`
 
       if (scripts && scripts.parentNode) {
-        scripts.parentNode.insertBefore(scriptElement, scripts);
+        scripts.parentNode.insertBefore(scriptElement, scripts)
       }
     }
   }
@@ -49,21 +49,21 @@ class MatomoTracker {
   // Tracks events based on data attributes
   trackEvents() {
     const elements = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]')
-    );
+      document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]'),
+    )
     if (elements.length) {
       elements.forEach(element => {
-        element.addEventListener("click", () => {
-          const { matomoAction, matomoName, matomoValue } = element.dataset;
+        element.addEventListener('click', () => {
+          const { matomoAction, matomoName, matomoValue } = element.dataset
           if (matomoAction) {
             this.trackEvent({
               action: matomoAction,
               name: matomoName,
-              value: matomoValue
-            });
+              value: matomoValue,
+            })
           }
-        });
-      });
+        })
+      })
     }
   }
 
@@ -71,12 +71,12 @@ class MatomoTracker {
   // https://matomo.org/docs/event-tracking/#tracking-events
   trackEvent({ action, name, value, ...otherParams }: TrackEventParams) {
     if (!action) {
-      throw new Error(`Error: action is not defined.`);
+      throw new Error(`Error: action is not defined.`)
     }
     this.track({
       data: [TRACK_TYPES.TRACK_EVENT, action, name, value],
-      ...otherParams
-    });
+      ...otherParams,
+    })
   }
 
   // Tracks site search
@@ -88,18 +88,18 @@ class MatomoTracker {
     ...otherParams
   }: TrackSiteSearchParams) {
     if (!keyword) {
-      throw new Error(`Error: keyword is not defined.`);
+      throw new Error(`Error: keyword is not defined.`)
     }
     this.track({
       data: [TRACK_TYPES.TRACK_SEARCH, keyword, category, count],
-      ...otherParams
-    });
+      ...otherParams,
+    })
   }
 
   // Tracks page views
   // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
   trackPageView(params: TrackPageViewParams) {
-    this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params });
+    this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params })
   }
 
   // Sends the tracked page/view/search to Matomo
@@ -107,7 +107,7 @@ class MatomoTracker {
     data = [],
     documentTitle = window.document.title,
     href = window.location,
-    customDimensions = false
+    customDimensions = false,
   }: TrackParams) {
     if (data.length) {
       if (
@@ -117,20 +117,20 @@ class MatomoTracker {
       ) {
         customDimensions.map((customDimension: CustomDimension) =>
           window._paq.push([
-            "setCustomDimension",
+            'setCustomDimension',
             customDimension.id,
-            customDimension.value
-          ])
-        );
+            customDimension.value,
+          ]),
+        )
       }
 
-      window._paq.push(["setCustomUrl", href]);
-      window._paq.push(["setDocumentTitle", documentTitle]);
+      window._paq.push(['setCustomUrl', href])
+      window._paq.push(['setDocumentTitle', documentTitle])
       // accurately measure the time spent on the last pageview of a visit
-      window._paq.push(["enableHeartBeatTimer"]);
-      window._paq.push(data);
+      window._paq.push(['enableHeartBeatTimer'])
+      window._paq.push(data)
     }
   }
 }
 
-export default MatomoTracker;
+export default MatomoTracker
