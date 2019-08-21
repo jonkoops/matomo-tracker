@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Amsterdam/matomo-tracker.svg?branch=draft)](https://travis-ci.org/Amsterdam/matomo-tracker)
+[![Build Status](https://travis-ci.org/Amsterdam/matomo-tracker.svg?branch=master)](https://travis-ci.org/Amsterdam/matomo-tracker)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![TypeScript](https://badges.frapsoft.com/typescript/version/typescript-next.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
