@@ -5,7 +5,7 @@
     "start": "yarn build -w",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier": "prettier --write './packages/**/**/*.{ts,tsx}'",
-    "prepublish": "yarn prettier & yarn build",
+    "prepublishOnly": "yarn build",
     "postinstall": "lerna link"
   },
   "workspaces": [
