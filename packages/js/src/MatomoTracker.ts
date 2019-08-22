@@ -13,7 +13,7 @@ class MatomoTracker {
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
     if (!options.urlBase) {
-      throw new Error('Matomo urlBase is not set.')
+      throw new Error('Matomo urlBase is not required.')
     }
 
     MatomoTracker.initialize(options)
@@ -51,13 +51,23 @@ class MatomoTracker {
     if (elements.length) {
       elements.forEach(element => {
         element.addEventListener('click', () => {
-          const { matomoAction, matomoName, matomoValue } = element.dataset
-          if (matomoAction) {
+          const {
+            matomoCategory,
+            matomoAction,
+            matomoName,
+            matomoValue,
+          } = element.dataset
+          if (matomoCategory && matomoAction) {
             this.trackEvent({
+              category: matomoCategory,
               action: matomoAction,
               name: matomoName,
-              value: matomoValue,
+              value: Number(matomoValue),
             })
+          } else {
+            throw new Error(
+              `Error: data-matomo-category and data-matomo-action are required.`,
+            )
           }
         })
       })
@@ -66,14 +76,21 @@ class MatomoTracker {
 
   // Tracks events
   // https://matomo.org/docs/event-tracking/#tracking-events
-  trackEvent({ action, name, value, ...otherParams }: TrackEventParams) {
-    if (!action) {
-      throw new Error(`Error: action is not defined.`)
+  trackEvent({
+    category,
+    action,
+    name,
+    value,
+    ...otherParams
+  }: TrackEventParams) {
+    if (category && action) {
+      this.track({
+        data: [TRACK_TYPES.TRACK_EVENT, category, action, name, value],
+        ...otherParams,
+      })
+    } else {
+      throw new Error(`Error: category and action are required.`)
     }
-    this.track({
-      data: [TRACK_TYPES.TRACK_EVENT, action, name, value],
-      ...otherParams,
-    })
   }
 
   // Tracks site search
@@ -84,13 +101,14 @@ class MatomoTracker {
     count,
     ...otherParams
   }: TrackSiteSearchParams) {
-    if (!keyword) {
-      throw new Error(`Error: keyword is not defined.`)
+    if (keyword) {
+      this.track({
+        data: [TRACK_TYPES.TRACK_SEARCH, keyword, category, count],
+        ...otherParams,
+      })
+    } else {
+      throw new Error(`Error: keyword is required.`)
     }
-    this.track({
-      data: [TRACK_TYPES.TRACK_SEARCH, keyword, category, count],
-      ...otherParams,
-    })
   }
 
   // Tracks page views

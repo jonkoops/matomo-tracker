@@ -57,8 +57,9 @@ const MatomoInstance = new MatomoTracker({
 MatomoInstance.trackPageView();
 
 MatomoInstance.trackEvent({
-  action: "test",
-  name: "sample", // optional
+  category: "sample-page",
+  action: "click-event",
+  name: "test", // optional
   value: "123" // optional
 });
 ```
@@ -86,9 +87,10 @@ MatomoInstance.trackPageView({
 });
 
 MatomoInstance.trackEvent({
-  action: "test",
-  name: "sample", // optional
-  value: "123", // optional
+  category: "sample-page",
+  action: "click-event",
+  name: "test", // optional
+  value: 123, // optional, numerical value
   documentTitle: "Page title", // optional
   href: "https://LINK.TO.PAGE", // optional
   customDimensions: [
@@ -133,9 +135,10 @@ Or if you want to stay away from inline JavaScript events, this project can be u
 <body>
     <button
       data-matomo-event="click"
-      data-matomo-action="test" // optional
-      data-matomo-name="sample" // optional
-      data-matomo-value="123" // optional
+      data-matomo-category="sample-page"
+      data-matomo-action="click-event"
+      data-matomo-name="test" // optional
+      data-matomo-value="123" // optional, numerical value
       type="button"
     >
       Track me!

@@ -44,7 +44,7 @@ const MyComponent = () => {
     doSomething(e)
 
     // Track click on button
-    trackEvent('click')
+    trackEvent({ category: 'sample-page', action: 'click-event' })
   }
 
   return <Button onClick={handleOnClick}>Click me</Button>
@@ -53,7 +53,7 @@ const MyComponent = () => {
 
 ## Advanced usage
 
-By default the Matomo Tracker will send the window's document title and location, but you're able to send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
+By default the Matomo Tracker will send the window's document title and location, or send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
 
 ```js
 import { useMatomo } from '@datapunt/matomo-tracker-react'
@@ -81,7 +81,7 @@ const MyComponent = () => {
     doSomething(e)
 
     // Track click on button
-    trackEvent({ action: 'click' })
+    trackEvent({ category: 'sample-page', action: 'click-event' })
   }
 
   return <Button onClick={handleOnClick}>Click me</Button>
@@ -101,9 +101,10 @@ const MyComponent = () => {
 
     // Track click on button
     trackEvent({
-      action: 'click',
-      name: 'sample', // optional
-      value: '123', // optional
+      category: 'sample-page',
+      action: 'click-event',
+      name: 'test', // optional
+      value: 123, // optional, numerical value
       documentTitle: 'Page title', // optional
       href: 'https://LINK.TO.PAGE', // optional
       customDimensions: [
