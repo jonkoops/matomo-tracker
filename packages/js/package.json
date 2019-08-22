@@ -34,11 +34,14 @@
     "analytics",
     "client"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "rollup": "^1.19.4",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.2",
     "tslib": "^1.10.0"
   },
-  "gitHead": "34721942d3041705775a4b6f0f04f66c33d8d1f2"
+  "gitHead": "cc08cc56b79af67a93de78632dc98b9ef2588871"
 }
