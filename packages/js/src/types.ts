@@ -28,9 +28,10 @@ export interface TrackParams extends TrackPageViewParams {
 }
 
 export interface TrackEventParams extends TrackPageViewParams {
+  category: string
   action: string
   name?: string
-  value?: string
+  value?: number | undefined
 }
 
 export interface TrackSiteSearchParams extends TrackPageViewParams {
