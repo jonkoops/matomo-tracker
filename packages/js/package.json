@@ -1,6 +1,6 @@
 {
   "name": "@datapunt/matomo-tracker-js",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Matomo tracker for frontend projects",
   "main": "lib/index.js",
   "scripts": {
