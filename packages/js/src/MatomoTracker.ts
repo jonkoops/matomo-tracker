@@ -1,13 +1,13 @@
+import { defaultOptions, TRACK_TYPES } from './constants'
 import {
   CustomDimension,
-  UserOptions,
-  TrackParams,
-  TrackPageViewParams,
   TrackEventParams,
+  TrackLinkParams,
+  TrackPageViewParams,
+  TrackParams,
   TrackSiteSearchParams,
+  UserOptions,
 } from './types'
-
-import { defaultOptions, TRACK_TYPES } from './constants'
 
 class MatomoTracker {
   constructor(userOptions: UserOptions) {
@@ -109,6 +109,12 @@ class MatomoTracker {
     } else {
       throw new Error(`Error: keyword is required.`)
     }
+  }
+
+  // Tracks outgoing links to other sites and downloads
+  // https://developer.matomo.org/guides/tracking-javascript-guide#enabling-download-outlink-tracking
+  trackLink({ href, linkType }: TrackLinkParams) {
+    window._paq.push([TRACK_TYPES.TRACK_LINK, href, linkType])
   }
 
   // Tracks page views
