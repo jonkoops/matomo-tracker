@@ -24,9 +24,14 @@ class MatomoTracker {
     window._paq = window._paq || []
 
     if (window._paq.length === 0) {
-      window._paq.push(['enableLinkTracking'])
       window._paq.push(['setTrackerUrl', trackerUrl || `${urlBase}matomo.php`])
       window._paq.push(['setSiteId', siteId])
+
+      // accurately measure the time spent on the last pageview of a visit
+      window._paq.push(['enableHeartBeatTimer'])
+      // measure outbound links and downloads
+      // might not work accurately on SPAs
+      window._paq.push(['enableLinkTracking'])
 
       const doc = document
       const scriptElement = doc.createElement('script')
@@ -147,11 +152,6 @@ class MatomoTracker {
 
       window._paq.push(['setCustomUrl', href])
       window._paq.push(['setDocumentTitle', documentTitle])
-      // accurately measure the time spent on the last pageview of a visit
-      window._paq.push(['enableHeartBeatTimer'])
-      // measure outbound links and downloads
-      // might not work accurately on SPAs
-      window._paq.push(['enableLinkTracking'])
       window._paq.push(data)
     }
   }
