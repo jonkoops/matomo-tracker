@@ -149,6 +149,9 @@ class MatomoTracker {
       window._paq.push(['setDocumentTitle', documentTitle])
       // accurately measure the time spent on the last pageview of a visit
       window._paq.push(['enableHeartBeatTimer'])
+      // measure outbound links and downloads
+      // might not work accurately on SPAs
+      window._paq.push(['enableLinkTracking'])
       window._paq.push(data)
     }
   }
