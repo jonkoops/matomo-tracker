@@ -30,7 +30,7 @@ class MatomoTracker {
       // accurately measure the time spent on the last pageview of a visit
       window._paq.push(['enableHeartBeatTimer'])
       // measure outbound links and downloads
-      // might not work accurately on SPAs
+      // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
       window._paq.push(['enableLinkTracking'])
 
       const doc = document
