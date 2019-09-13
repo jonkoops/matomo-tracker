@@ -63,6 +63,10 @@ MatomoInstance.trackEvent({
   name: 'test', // optional
   value: 123, // optional, numerical value
 })
+
+MatomoInstance.trackLink({
+  'https://link-to-other-website.org'
+})
 ```
 
 ## Advanced usage
@@ -100,6 +104,11 @@ MatomoInstance.trackEvent({
       value: 'loggedIn',
     },
   ], // optional
+})
+
+MatomoInstance.trackLink({
+  'https://link-to-your-file.pdf',
+  'download' // value can also be 'link' for links to other websites
 })
 ```
 

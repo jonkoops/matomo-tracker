@@ -1,13 +1,13 @@
+import { defaultOptions, TRACK_TYPES } from './constants'
 import {
   CustomDimension,
-  UserOptions,
-  TrackParams,
-  TrackPageViewParams,
   TrackEventParams,
+  TrackLinkParams,
+  TrackPageViewParams,
+  TrackParams,
   TrackSiteSearchParams,
+  UserOptions,
 } from './types'
-
-import { defaultOptions, TRACK_TYPES } from './constants'
 
 class MatomoTracker {
   constructor(userOptions: UserOptions) {
@@ -111,6 +111,12 @@ class MatomoTracker {
     }
   }
 
+  // Tracks outgoing links to other sites and downloads
+  // https://developer.matomo.org/guides/tracking-javascript-guide#enabling-download-outlink-tracking
+  trackLink({ href, linkType = 'link' }: TrackLinkParams) {
+    window._paq.push([TRACK_TYPES.TRACK_LINK, href, linkType])
+  }
+
   // Tracks page views
   // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
   trackPageView(params: TrackPageViewParams) {
@@ -143,6 +149,9 @@ class MatomoTracker {
       window._paq.push(['setDocumentTitle', documentTitle])
       // accurately measure the time spent on the last pageview of a visit
       window._paq.push(['enableHeartBeatTimer'])
+      // measure outbound links and downloads
+      // might not work accurately on SPAs
+      window._paq.push(['enableLinkTracking'])
       window._paq.push(data)
     }
   }
