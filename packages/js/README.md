@@ -107,8 +107,8 @@ MatomoInstance.trackEvent({
 })
 
 MatomoInstance.trackLink({
-  'https://link-to-your-file.pdf',
-  'download' // value can also be 'link' for links to other websites
+  href: 'https://link-to-your-file.pdf',
+  linkType: 'download' // optional, default value 'link'
 })
 ```
 
