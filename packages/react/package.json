@@ -1,6 +1,6 @@
 {
   "name": "@datapunt/matomo-tracker-react",
-  "version": "0.0.15",
+  "version": "0.0.16-alpha.5.0",
   "description": "Matomo tracker for react projects",
   "main": "lib/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@datapunt/matomo-tracker-js": "^0.0.15"
+    "@datapunt/matomo-tracker-js": "^0.0.16-alpha.5.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6 <= 16.x.x"
