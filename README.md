@@ -5,7 +5,7 @@
 
 # Matomo Tracker
 
-Monorepo for using Matamo tracking in frontend projects
+Monorepo for using Matomo tracking in frontend projects
 
 ## Content
 
