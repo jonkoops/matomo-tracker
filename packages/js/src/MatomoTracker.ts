@@ -13,7 +13,7 @@ class MatomoTracker {
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
     if (!options.urlBase) {
-      throw new Error('Matomo urlBase is not required.')
+      throw new Error('Matomo urlBase is required.')
     }
 
     MatomoTracker.initialize(options)
