@@ -19,7 +19,7 @@ const MatomoInstance = new window.MatomoTracker({ ... })
 ```html
 <script src="./bundle.min.js"></script>
 <script>
-  const MatomoInstance = new window.MatomoTracker({
+  const MatomoInstance = new window.MatomoTracker.default({
     /* setup */
   })
 
