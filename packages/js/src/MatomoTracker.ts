@@ -132,7 +132,7 @@ class MatomoTracker {
   track({
     data = [],
     documentTitle = window.document.title,
-    href = window.location,
+    href = window.location.href,
     customDimensions = false,
   }: TrackParams) {
     if (data.length) {
