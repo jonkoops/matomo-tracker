@@ -18,5 +18,15 @@ module.exports = {
         extensions: ['.ts', '.tsx'],
       },
     ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
 }
