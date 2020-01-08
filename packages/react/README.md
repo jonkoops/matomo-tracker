@@ -11,7 +11,7 @@ Installing with npm: `npm i --save @datapunt/matomo-tracker-react` or yarn `yarn
 Before you're able to use this Matomo Tracker you need to create a Matomo instance with your project specific details, and wrap your application with the `MatomoProvider` that this package exposes.
 
 ```js
-import { MatomoProvider, createInstance } from @datapunt/matomo-tracker-react
+import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 
 const instance = createInstance({
   urlBase: "https://LINK.TO.DOMAIN/",
