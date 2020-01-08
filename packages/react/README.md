@@ -4,7 +4,7 @@ Stand alone library for using Matamo tracking in React projects
 
 ## Installation
 
-Installing with npm: `npm i --save @datapunt/matomo-tracker-react` or yarn `yarn add -S @datapunt/matomo-tracker-react`
+Installing with npm: `npm i --save @datapunt/matomo-tracker-react` or yarn `yarn add @datapunt/matomo-tracker-react`
 
 ## Usage
 
