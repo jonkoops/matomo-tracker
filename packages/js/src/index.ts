@@ -1,7 +1,9 @@
 import MatomoTracker from './MatomoTracker'
 import * as types from './types'
 
-window.MatomoTracker = MatomoTracker
+if (typeof window !== 'undefined') {
+  window.MatomoTracker = MatomoTracker
+}
 
 export default MatomoTracker
 
