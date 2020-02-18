@@ -18,11 +18,14 @@
   "bugs": {
     "url": "https://github.com/Amsterdam/matomo-tracker/issues"
   },
+  "module": "es/index.js",
   "files": [
     "lib",
+    "es",
     "bundle.min.js",
     "README.md"
   ],
+  "sideEffects": false,
   "contributors": [
     "Chris van Mook <chrisvanmook@gmail.com> ()",
     "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"

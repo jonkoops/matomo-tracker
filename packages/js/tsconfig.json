@@ -1,13 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": [
-      "es5",
-      "dom",
-      "dom.iterable"
-    ],
-    "removeComments": true,
     "rootDir": "./src",
     "outDir": "./lib"
-  }
+  },
+  "exclude": ["./lib", "./es", "*./src/**/*.test.ts"],
+  "include": ["./src"]
 }
