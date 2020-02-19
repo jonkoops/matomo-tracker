@@ -1,16 +1,22 @@
+const { join } = require('path')
+
 module.exports = {
-  extends: [
-    'airbnb',
-    '../../.eslintrc.js',
-    'prettier/react',
-  ],
+  extends: ['airbnb', '../../.eslintrc.js', 'prettier/react', 'plugin:jest/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
   },
-  plugins: ['react'],
+  env: {
+    'jest/globals': true,
+  },
+  plugins: ['jest', 'react'],
   rules: {
+    'import/no-extraneous-dependencies': [
+      'error',
+      // Use package.json from both this package folder and root.
+      { packageDir: [__dirname, join(__dirname, '../../')] }
+    ],
     'react/prop-types': 0,
     'react/jsx-filename-extension': [
       1,
