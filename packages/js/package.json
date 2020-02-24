@@ -18,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/Amsterdam/matomo-tracker/issues"
   },
-  "module": "es/index.js",
   "files": [
     "lib",
     "es",
