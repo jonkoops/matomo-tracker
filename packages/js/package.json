@@ -1,6 +1,6 @@
 {
   "name": "@datapunt/matomo-tracker-js",
-  "version": "0.0.16",
+  "version": "0.1.1",
   "description": "Matomo tracker for frontend projects",
   "main": "lib/index.js",
   "scripts": {
@@ -20,9 +20,11 @@
   },
   "files": [
     "lib",
+    "es",
     "bundle.min.js",
     "README.md"
   ],
+  "sideEffects": false,
   "contributors": [
     "Chris van Mook <chrisvanmook@gmail.com> ()",
     "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"

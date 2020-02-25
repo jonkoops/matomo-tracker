@@ -1,11 +1,8 @@
 {
   "name": "@datapunt/matomo-tracker-react",
-  "version": "0.0.16",
+  "version": "0.1.1",
   "description": "Matomo tracker for react projects",
   "main": "lib/index.js",
-  "scripts": {
-    "start": "tsc -b"
-  },
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
   "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
@@ -19,8 +16,10 @@
   },
   "files": [
     "lib",
+    "es",
     "README.md"
   ],
+  "sideEffects": false,
   "contributors": [
     "Chris van Mook <chrisvanmook@gmail.com> ()",
     "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"
@@ -37,7 +36,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@datapunt/matomo-tracker-js": "^0.0.16"
+    "@datapunt/matomo-tracker-js": "^0.1.1"
   },
   "peerDependencies": {
     "react": ">=16.8.6 <= 16.x.x"

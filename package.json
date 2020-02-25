@@ -1,9 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b packages/*",
+    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b --clean && tsc -b packages/**/tsconfig.json && tsc -b packages/**/tsconfig.es.json",
+    "clean:generated": "find ./packages -name \"*.d.ts\" -type f -delete && find ./packages -name \"*.tsbuildinfo\" -type f -delete",
     "start": "yarn build -w",
+    "start:example:js": "yarn build && npx http-server ./packages/js -o /example",
     "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest",
     "prettier": "prettier --write './packages/**/**/*.{ts,tsx}'",
     "prepublishOnly": "yarn build",
     "postinstall": "lerna link"
@@ -12,34 +15,42 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/react": "^16.9.17",
-    "@typescript-eslint/eslint-plugin": "^2.15.0",
-    "@typescript-eslint/parser": "^2.15.0",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^25.1.2",
+    "@types/react": "^16.9.20",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^2.3.0",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.0.0",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "jest-cli": "^25.1.0",
     "lerna": "^3.20.2",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "react": "16.12.0",
-    "rollup": "^1.28.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.31.1",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.4",
+    "ts-jest": "^25.2.0",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "husky": {
     "hooks": {
+      "pre-push": "yarn test --bail",
       "pre-commit": "lint-staged"
     }
   },
