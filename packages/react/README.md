@@ -30,24 +30,23 @@ ReactDOM.render(
 After wrapping your application with the `MatomoProvider` you can use the `useMatomo` hook to track your application from anywhere within the MatomoProvider component tree:
 
 ```js
+import React from 'react'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
-const MyComponent = () => {
+const MyPage = () => {
   const { trackPageView, trackEvent } = useMatomo()
 
-  // Track page view after page load
+  // Track page view
   React.useEffect(() => {
     trackPageView()
-  }, [loading])
+  }, [])
 
-  const handleOnClick = e => {
-    doSomething(e)
-
+  const handleOnClick = () => {
     // Track click on button
     trackEvent({ category: 'sample-page', action: 'click-event' })
   }
 
-  return <Button onClick={handleOnClick}>Click me</Button>
+  return <button type="button" onClick={handleOnClick}>Click me</button>
 }
 ```
 
@@ -56,12 +55,13 @@ const MyComponent = () => {
 By default the Matomo Tracker will send the window's document title and location, or send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
 
 ```js
+import React from 'react'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
-const MyComponent = () => {
-  const { trackPageView } = useMatomo()
+const MyPage = () => {
+  const { trackPageView, trackEvent } = useMatomo()
 
-  // Track page view after page load
+  // Track page view
   React.useEffect(() => {
     trackPageView({
       documentTitle: 'Page title', // optional
@@ -73,32 +73,27 @@ const MyComponent = () => {
         },
       ], // optional
     })
-  }, [loading])
+  }, [])
 
-  return <ChildComponent />
-
-  const handleOnClick = e => {
-    doSomething(e)
-
+  const handleOnClick = () => {
     // Track click on button
     trackEvent({ category: 'sample-page', action: 'click-event' })
   }
 
-  return <Button onClick={handleOnClick}>Click me</Button>
+  return <button type="button" onClick={handleOnClick}>Click me</button>
 }
 ```
 
 And you can do the same for the `trackEvent` method:
 
 ```js
+import React from 'react'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
-const MyComponent = () => {
+const MyPage = () => {
   const { trackEvent } = useMatomo()
 
-  const handleOnClick = e => {
-    doSomething(e)
-
+  const handleOnClick = () => {
     // Track click on button
     trackEvent({
       category: 'sample-page',
@@ -116,7 +111,7 @@ const MyComponent = () => {
     })
   }
 
-  return <Button onClick={handleOnClick}>Click me</Button>
+  return <button type="button" onClick={handleOnClick}>Click me</button>
 }
 ```
 
