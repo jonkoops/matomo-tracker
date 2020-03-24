@@ -54,7 +54,7 @@ class MatomoTracker {
       document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]'),
     )
     if (elements.length) {
-      elements.forEach(element => {
+      elements.forEach((element) => {
         element.addEventListener('click', () => {
           const {
             matomoCategory,
