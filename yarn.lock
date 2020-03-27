@@ -265,7 +265,7 @@
     jest-util "^25.2.0"
     slash "^3.0.0"
 
-"@jest/core@^25.2.0", "@jest/core@^25.2.0":
+"@jest/core@^25.2.0":
   version "25.2.0"
   resolved "https://registry.yarnpkg.com/@jest/core/-/core-25.2.0.tgz#c1d65a7a2e4339b815dc0fe16d447f5eea7ed591"
   integrity sha512-8R7gaUuMnilS8QBQOT5lF6KS/+ocHIiM6Ou9gnRB0GQA138I2G9tRs/D9MR9hkvuYGLy+VoqOTdLKUT60nzlVw==
@@ -412,16 +412,6 @@
     "@types/yargs" "^13.0.0"
 
 "@jest/types@^25.1.0", "@jest/types@^25.2.0":
-  version "25.2.0"
-  resolved "https://registry.yarnpkg.com/@jest/types/-/types-25.2.0.tgz#0659866d9b31843a737b601b950a690e576a415a"
-  integrity sha512-RLWBAON8LEjzD60Cn0XFmvMNTuV+scKlufIUApnG7VF7oA2jCEk5J0uzEchx6xuOwhrHohQM28K4CmEjgtDEwg==
-  dependencies:
-    "@types/istanbul-lib-coverage" "^2.0.0"
-    "@types/istanbul-reports" "^1.1.1"
-    "@types/yargs" "^15.0.0"
-    chalk "^3.0.0"
-
-"@jest/types@^25.2.0":
   version "25.2.0"
   resolved "https://registry.yarnpkg.com/@jest/types/-/types-25.2.0.tgz#0659866d9b31843a737b601b950a690e576a415a"
   integrity sha512-RLWBAON8LEjzD60Cn0XFmvMNTuV+scKlufIUApnG7VF7oA2jCEk5J0uzEchx6xuOwhrHohQM28K4CmEjgtDEwg==
@@ -1384,9 +1374,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.9.20":
-  version "16.9.25"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.25.tgz#6ae2159b40138c792058a23c3c04fd3db49e929e"
-  integrity sha512-Dlj2V72cfYLPNscIG3/SMUOzhzj7GK3bpSrfefwt2YT9GLynvLCCZjbhyF6VsT0q0+aRACRX03TDJGb7cA0cqg==
+  version "16.9.26"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.26.tgz#1e55803e468f5393413e29033538cc9aaed6cec9"
+  integrity sha512-dGuSM+B0Pq1MKXYUMlUQWeS6Jj9IhSAUf9v8Ikaimj+YhkBcQrihWBkmyEhK/1fzkJTwZQkhZp5YhmWa2CH+Rw==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
