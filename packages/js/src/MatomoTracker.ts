@@ -21,6 +21,10 @@ class MatomoTracker {
 
   // Initializes the Matomo Tracker
   static initialize({ urlBase, siteId, trackerUrl, srcUrl }: UserOptions) {
+    if (urlBase[urlBase.length - 1] !== '/') {
+      urlBase = urlBase + '/'
+    }
+
     window._paq = window._paq || []
 
     if (window._paq.length === 0) {
