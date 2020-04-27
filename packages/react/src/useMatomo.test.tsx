@@ -38,7 +38,7 @@ describe('useMatomo', () => {
     }))
 
     const instance = createInstance({
-      urlBase: 'https://LINK.TO.DOMAIN/',
+      urlBase: 'https://LINK.TO.DOMAIN',
       siteId: 3, // optional, default value: `1`
     })
 
