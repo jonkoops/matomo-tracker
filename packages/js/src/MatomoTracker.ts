@@ -6,6 +6,9 @@ import {
   TrackPageViewParams,
   TrackParams,
   TrackSiteSearchParams,
+  TrackEcommerceOrderParams,
+  AddEcommerceItemParams,
+  SetEcommerceViewParams,
   UserOptions,
 } from './types'
 
@@ -80,7 +83,7 @@ class MatomoTracker {
       document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]'),
     )
     if (elements.length) {
-      elements.forEach(element => {
+      elements.forEach((element) => {
         element.addEventListener('click', () => {
           const {
             matomoCategory,
@@ -152,6 +155,79 @@ class MatomoTracker {
   // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
   trackPageView(params: TrackPageViewParams) {
     this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params })
+  }
+
+  // Adds a product to an Ecommerce order to be tracked via trackEcommerceOrder.
+  // https://matomo.org/docs/ecommerce-analytics
+  // https://matomo.org/docs/ecommerce-analytics/#1-addecommerceitemproductsku-productname-productcategory-price-quantity
+  addEcommerceItem({
+    sku,
+    productName,
+    productCategory,
+    productPrice = 0.0,
+    productQuantity = 1,
+  }: AddEcommerceItemParams) {
+    window._paq.push([
+      'addEcommerceItem',
+      sku,
+      productName,
+      productCategory,
+      productPrice,
+      productQuantity,
+    ])
+  }
+
+  // Tracks an Ecommerce order containing items added via addEcommerceItem.
+  // https://matomo.org/docs/ecommerce-analytics/#2-trackecommerceorderorderid-revenue-subtotal-tax-shipping-discount
+  trackEcommerceOrder({
+    orderId,
+    orderRevenue,
+    orderSubTotal,
+    taxAmount,
+    shippingAmount,
+    discountOffered = false,
+  }: TrackEcommerceOrderParams) {
+    this.track({
+      data: [
+        TRACK_TYPES.TRACK_ECOMMERCE_ORDER,
+        orderId,
+        orderRevenue,
+        orderSubTotal,
+        taxAmount,
+        shippingAmount,
+        discountOffered,
+      ],
+    })
+  }
+
+  // Tracks updates to an Ecommerce Cart before an actual purchase.
+  // This will replace currently tracked information of the cart. Always include all items of the updated cart!
+  // https://matomo.org/docs/ecommerce-analytics/#example-tracking-an-ecommerce-cart-update-containing-two-products
+  trackEcommerceCartUpdate(amount: number) {
+    window._paq.push([TRACK_TYPES.TRACK_ECOMMERCE_CART_UPDATE, amount])
+  }
+
+  // Marks the next page view as an Ecommerce product page.
+  // https://matomo.org/docs/ecommerce-analytics/#example-tracking-a-product-page-view
+  setEcommerceView({
+    sku,
+    productName,
+    productCategory,
+    productPrice,
+  }: SetEcommerceViewParams) {
+    window._paq.push([
+      'setEcommerceView',
+      sku,
+      productName,
+      productCategory,
+      productPrice,
+    ])
+  }
+
+  // Marks the next tracked page view as an Ecommerce category page.
+  // https://matomo.org/docs/ecommerce-analytics/#example-tracking-a-category-page-view
+  setEcommerceCategoryView(productCategory: string) {
+    this.setEcommerceView({ productCategory, productName: false, sku: false })
   }
 
   // Sends the tracked page/view/search to Matomo
