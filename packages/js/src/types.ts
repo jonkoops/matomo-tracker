@@ -19,6 +19,7 @@ export interface UserOptions {
     active: boolean
     seconds?: number
   }
+  linkTracking?: boolean
 }
 
 export interface TrackPageViewParams {
@@ -40,7 +41,7 @@ export interface TrackEventParams extends TrackPageViewParams {
 
 export interface TrackLinkParams {
   href: string
-  linkType: 'download' | 'link'
+  linkType?: 'download' | 'link'
 }
 
 export interface TrackSiteSearchParams extends TrackPageViewParams {

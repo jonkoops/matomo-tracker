@@ -47,6 +47,7 @@ const MatomoInstance = new window.MatomoTracker({
     active: true, // optional, default value: true
     seconds: 10 // optional, default value: `15
   }
+  linkTracking: false // optional, default value: true
 })
 ```
 
@@ -69,7 +70,7 @@ MatomoInstance.trackEvent({
 })
 
 MatomoInstance.trackLink({
-  'https://link-to-other-website.org'
+  href: 'https://link-to-other-website.org',
 })
 ```
 
@@ -112,7 +113,7 @@ MatomoInstance.trackEvent({
 
 MatomoInstance.trackLink({
   href: 'https://link-to-your-file.pdf',
-  linkType: 'download' // optional, default value 'link'
+  linkType: 'download', // optional, default value 'link'
 })
 ```
 

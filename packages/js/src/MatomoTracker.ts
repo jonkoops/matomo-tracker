@@ -29,6 +29,7 @@ class MatomoTracker {
     trackerUrl,
     srcUrl,
     heartBeat,
+    linkTracking = true,
   }: UserOptions) {
     if (urlBase[urlBase.length - 1] !== '/') {
       urlBase = urlBase + '/'
@@ -51,7 +52,7 @@ class MatomoTracker {
 
         // // measure outbound links and downloads
         // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
-        this.enableLinkTracking(true)
+        this.enableLinkTracking(linkTracking)
 
         const doc = document
         const scriptElement = doc.createElement('script')
