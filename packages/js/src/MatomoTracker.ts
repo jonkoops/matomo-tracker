@@ -20,7 +20,13 @@ class MatomoTracker {
   }
 
   // Initializes the Matomo Tracker
-  static initialize({ urlBase, siteId, trackerUrl, srcUrl }: UserOptions) {
+  static initialize({
+    urlBase,
+    siteId,
+    trackerUrl,
+    srcUrl,
+    heartBeat,
+  }: UserOptions) {
     if (urlBase[urlBase.length - 1] !== '/') {
       urlBase = urlBase + '/'
     }
@@ -32,10 +38,13 @@ class MatomoTracker {
       window._paq.push(['setSiteId', siteId])
 
       // accurately measure the time spent on the last pageview of a visit
-      window._paq.push(['enableHeartBeatTimer'])
-      // measure outbound links and downloads
-      // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
-      window._paq.push(['enableLinkTracking'])
+      if (!heartBeat || (heartBeat && heartBeat.active)) {
+        this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
+      }
+
+      // // measure outbound links and downloads
+      // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
+      this.enableLinkTracking(true)
 
       const doc = document
       const scriptElement = doc.createElement('script')
@@ -50,6 +59,14 @@ class MatomoTracker {
         scripts.parentNode.insertBefore(scriptElement, scripts)
       }
     }
+  }
+
+  static enableHeartBeatTimer(seconds: number) {
+    window._paq.push(['enableHeartBeatTimer', seconds])
+  }
+
+  static enableLinkTracking(active: boolean) {
+    window._paq.push(['enableLinkTracking', active])
   }
 
   // Tracks events based on data attributes

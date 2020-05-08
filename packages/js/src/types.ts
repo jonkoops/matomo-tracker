@@ -15,6 +15,10 @@ export interface UserOptions {
   siteId: number
   trackerUrl?: string
   srcUrl?: string
+  heartBeat?: {
+    active: boolean
+    seconds?: number
+  }
 }
 
 export interface TrackPageViewParams {

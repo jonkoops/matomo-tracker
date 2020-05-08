@@ -43,6 +43,10 @@ const MatomoInstance = new window.MatomoTracker({
   siteId: 3, // optional, default value: `1`
   trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
   srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`
+  heartBeat: { // optional, enabled by default
+    active: true, // optional, default value: true
+    seconds: 10 // optional, default value: `15
+  }
 })
 ```
 
