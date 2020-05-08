@@ -5,7 +5,9 @@ import {
   TrackPageViewParams,
   TrackEventParams,
   TrackSiteSearchParams,
+  TrackLinkParams,
 } from './types'
+import useOutboundClickListener from './utils/useOutboundClickListener'
 
 function useMatomo() {
   const instance: MatomoInstance = React.useContext(MatomoContext)
@@ -19,10 +21,17 @@ function useMatomo() {
   const trackSiteSearch = (params: TrackSiteSearchParams) =>
     instance.trackSiteSearch && instance.trackSiteSearch(params)
 
+  const trackLink = (params: TrackLinkParams) =>
+    instance.trackLink && instance.trackLink(params)
+
+  const enableLinkTracking = () => useOutboundClickListener(instance)
+
   return {
     trackEvent,
     trackPageView,
     trackSiteSearch,
+    trackLink,
+    enableLinkTracking,
   }
 }
 

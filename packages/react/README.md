@@ -14,16 +14,16 @@ Before you're able to use this Matomo Tracker you need to create a Matomo instan
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 
 const instance = createInstance({
-  urlBase: "https://LINK.TO.DOMAIN",
+  urlBase: 'https://LINK.TO.DOMAIN',
   siteId: 3, // optional, default value: `1`
-  trackerUrl: "https://LINK.TO.DOMAIN/tracking.php", // optional, default value: `${urlBase}matomo.php`
-  srcUrl: "https://LINK.TO.DOMAIN/tracking.js" // optional, default value: `${urlBase}matomo.js`
-});
+  trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
+  srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`
+})
 
 ReactDOM.render(
   <MatomoProvider value={instance}>
     <MyApp />
-  </MatomoProvider>
+  </MatomoProvider>,
 )
 ```
 
@@ -46,7 +46,11 @@ const MyPage = () => {
     trackEvent({ category: 'sample-page', action: 'click-event' })
   }
 
-  return <button type="button" onClick={handleOnClick}>Click me</button>
+  return (
+    <button type="button" onClick={handleOnClick}>
+      Click me
+    </button>
+  )
 }
 ```
 
@@ -80,7 +84,11 @@ const MyPage = () => {
     trackEvent({ category: 'sample-page', action: 'click-event' })
   }
 
-  return <button type="button" onClick={handleOnClick}>Click me</button>
+  return (
+    <button type="button" onClick={handleOnClick}>
+      Click me
+    </button>
+  )
 }
 ```
 
@@ -111,10 +119,45 @@ const MyPage = () => {
     })
   }
 
-  return <button type="button" onClick={handleOnClick}>Click me</button>
+  return (
+    <button type="button" onClick={handleOnClick}>
+      Click me
+    </button>
+  )
 }
+```
+
+## SPA Link Tracking
+
+Matomo provides the option to track outbound link, however, this implementation is flaky for a SPA (Single Page Application) **without** SSR (Server Side Rendering) across different versions of Matomo. Therefore you can use the `enableLinkTracking` method to listen to outbound clicks on anchor elements. This method should be placed on a component directly below your `MatomoProvider` on a component that's rendered on every page view. Also, make sure to disable the `enableLinkTracking` option on the instance passed to the provider to prevent Matomo from catching some link clicks:
+
+```js
+import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
+
+const instance = createInstance({
+  urlBase: "https://LINK.TO.DOMAIN",
+  enableLinkTracking: false // Important!
+});
+
+ReactDOM.render(
+  <MatomoProvider value={instance}>
+    <MyApp />
+  </MatomoProvider>
+)
+
+const MyApp = () => {
+  const { enableLinkTracking } = useMatomo()
+
+  enableLinkTracking()
+
+  return (
+    // Render components
+  )
+}
+
 ```
 
 ## References
 
 - [Matomo JavaScript Tracking Guide](https://developer.matomo.org/guides/tracking-javascript-guide)
+```
