@@ -31,32 +31,37 @@ class MatomoTracker {
       urlBase = urlBase + '/'
     }
 
-    window._paq = window._paq || []
+    if (typeof window !== 'undefined') {
+      window._paq = window._paq || []
 
-    if (window._paq.length === 0) {
-      window._paq.push(['setTrackerUrl', trackerUrl || `${urlBase}matomo.php`])
-      window._paq.push(['setSiteId', siteId])
+      if (window._paq.length === 0) {
+        window._paq.push([
+          'setTrackerUrl',
+          trackerUrl || `${urlBase}matomo.php`,
+        ])
+        window._paq.push(['setSiteId', siteId])
 
-      // accurately measure the time spent on the last pageview of a visit
-      if (!heartBeat || (heartBeat && heartBeat.active)) {
-        this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
-      }
+        // accurately measure the time spent on the last pageview of a visit
+        if (!heartBeat || (heartBeat && heartBeat.active)) {
+          this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
+        }
 
-      // // measure outbound links and downloads
-      // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
-      this.enableLinkTracking(true)
+        // // measure outbound links and downloads
+        // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
+        this.enableLinkTracking(true)
 
-      const doc = document
-      const scriptElement = doc.createElement('script')
-      const scripts = doc.getElementsByTagName('script')[0]
+        const doc = document
+        const scriptElement = doc.createElement('script')
+        const scripts = doc.getElementsByTagName('script')[0]
 
-      scriptElement.type = 'text/javascript'
-      scriptElement.async = true
-      scriptElement.defer = true
-      scriptElement.src = srcUrl || `${urlBase}matomo.js`
+        scriptElement.type = 'text/javascript'
+        scriptElement.async = true
+        scriptElement.defer = true
+        scriptElement.src = srcUrl || `${urlBase}matomo.js`
 
-      if (scripts && scripts.parentNode) {
-        scripts.parentNode.insertBefore(scriptElement, scripts)
+        if (scripts && scripts.parentNode) {
+          scripts.parentNode.insertBefore(scriptElement, scripts)
+        }
       }
     }
   }
@@ -75,7 +80,7 @@ class MatomoTracker {
       document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]'),
     )
     if (elements.length) {
-      elements.forEach((element) => {
+      elements.forEach(element => {
         element.addEventListener('click', () => {
           const {
             matomoCategory,
