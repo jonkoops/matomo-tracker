@@ -13,6 +13,8 @@ import {
 } from './types'
 
 class MatomoTracker {
+  mutationObserver: MutationObserver | undefined
+
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
     if (!options.urlBase) {
@@ -78,11 +80,7 @@ class MatomoTracker {
     window._paq.push(['enableLinkTracking', active])
   }
 
-  // Tracks events based on data attributes
-  trackEvents() {
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-matomo-event="click"]'),
-    )
+  private trackEventsForElements(elements: HTMLElement[]) {
     if (elements.length) {
       elements.forEach((element) => {
         element.addEventListener('click', () => {
@@ -106,6 +104,50 @@ class MatomoTracker {
           }
         })
       })
+    }
+  }
+
+  // Tracks events based on data attributes
+  trackEvents() {
+    const matchString = '[data-matomo-event="click"]'
+    let firstTime = false
+    if (!this.mutationObserver) {
+      firstTime = true
+      this.mutationObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          // Iterate over NodeList by indices (es15 does not allow using 'let node of mutation.addedNodes')
+          for (let ni = 0; ni < mutation.addedNodes.length; ni++) {
+            const node = mutation.addedNodes[ni]
+            // only track HTML elements
+            if (!(node instanceof HTMLElement)) continue
+
+            // check the inserted element for being a code snippet
+            if (node.matches(matchString)) {
+              this.trackEventsForElements([node])
+            }
+
+            const elements = Array.from(
+              node.querySelectorAll<HTMLElement>(matchString),
+            )
+            this.trackEventsForElements(elements)
+          }
+        }
+      })
+    }
+    this.mutationObserver.observe(document, { childList: true, subtree: true })
+
+    // Now track all already existing elements
+    if (firstTime) {
+      const elements = Array.from(
+        document.querySelectorAll<HTMLElement>(matchString),
+      )
+      this.trackEventsForElements(elements)
+    }
+  }
+
+  stopObserving() {
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect()
     }
   }
 
