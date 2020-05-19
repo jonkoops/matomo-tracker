@@ -27,6 +27,15 @@
       Track me!
     </button>
 
+    </br>
+
+    <button
+      onclick="addDynamicButton()"
+    >
+      Add dynamic button
+    </button>
+    <div id="buttonContainer"></div>
+
     <script src="../bundle.min.js"></script>
     <script>
       const MatomoInstance = new window.MatomoTracker.default({
@@ -35,6 +44,21 @@
       })
 
       MatomoInstance.trackEvents()
+
+      var buttonNum = 0
+      function addDynamicButton(data) {
+        buttonNum += 1
+        var button = document.createElement("button");
+        button.setAttribute("data-matomo-event", "click")
+        button.setAttribute("data-matomo-category", "sample-page")
+        button.setAttribute("data-matomo-action", "click-event")
+        button.setAttribute("data-matomo-name", "testDynamicButton")
+        button.setAttribute("data-matomo-value", buttonNum)
+        button.innerHTML = `Track Event ${buttonNum}`;
+
+        var buttonContainer = document.getElementById("buttonContainer");
+        buttonContainer.appendChild(button);
+      }
     </script>
   </body>
 </html>
