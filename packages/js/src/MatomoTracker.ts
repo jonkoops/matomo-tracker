@@ -13,7 +13,7 @@ import {
 } from './types'
 
 class MatomoTracker {
-  mutationObserver: MutationObserver | undefined
+  mutationObserver?: MutationObserver
 
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
@@ -116,10 +116,9 @@ class MatomoTracker {
       this.mutationObserver = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
           // Iterate over NodeList by indices (es15 does not allow using 'let node of mutation.addedNodes')
-          for (let ni = 0; ni < mutation.addedNodes.length; ni++) {
-            const node = mutation.addedNodes[ni]
+          mutation.addedNodes.forEach((node) => {
             // only track HTML elements
-            if (!(node instanceof HTMLElement)) continue
+            if (!(node instanceof HTMLElement)) return
 
             // check the inserted element for being a code snippet
             if (node.matches(matchString)) {
@@ -130,7 +129,7 @@ class MatomoTracker {
               node.querySelectorAll<HTMLElement>(matchString),
             )
             this.trackEventsForElements(elements)
-          }
+          })
         }
       })
     }
