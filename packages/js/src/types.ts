@@ -13,6 +13,7 @@ export interface CustomDimension {
 export interface UserOptions {
   urlBase: string
   siteId: number
+  userId?: string
   trackerUrl?: string
   srcUrl?: string
   heartBeat?: {

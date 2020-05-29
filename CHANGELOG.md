@@ -16,6 +16,7 @@ Prefix the change with one of these keywords:
 
 ## Unreleased
 
+- _Added_: include `userId` in the `MatomoTracker.initialize` params
 
 ## [0.1.4]
 
