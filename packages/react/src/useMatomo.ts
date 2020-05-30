@@ -18,6 +18,8 @@ function useMatomo() {
   const trackEvent = (params: TrackEventParams) =>
     instance.trackEvent && instance.trackEvent(params)
 
+  const trackEvents = () => instance.trackEvents && instance.trackEvents()
+
   const trackSiteSearch = (params: TrackSiteSearchParams) =>
     instance.trackSiteSearch && instance.trackSiteSearch(params)
 
@@ -28,6 +30,7 @@ function useMatomo() {
 
   return {
     trackEvent,
+    trackEvents,
     trackPageView,
     trackSiteSearch,
     trackLink,

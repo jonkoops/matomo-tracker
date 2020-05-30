@@ -2,6 +2,7 @@ import { types } from '@datapunt/matomo-tracker-js'
 
 export interface MatomoInstance {
   trackEvent?: Function
+  trackEvents?: Function
   trackPageView?: Function
   trackSiteSearch?: Function
   trackLink?: Function
