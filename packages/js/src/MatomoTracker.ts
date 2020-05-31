@@ -28,6 +28,7 @@ class MatomoTracker {
   static initialize({
     urlBase,
     siteId,
+    userId,
     trackerUrl,
     srcUrl,
     heartBeat,
@@ -46,6 +47,10 @@ class MatomoTracker {
           trackerUrl || `${urlBase}matomo.php`,
         ])
         window._paq.push(['setSiteId', siteId])
+
+        if (userId) {
+          window._paq.push(['setUserId', userId])
+        }
 
         // accurately measure the time spent on the last pageview of a visit
         if (!heartBeat || (heartBeat && heartBeat.active)) {
