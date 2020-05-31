@@ -41,7 +41,7 @@ Before you're able to use this Matomo Tracker you need to initialize Matomo with
 const MatomoInstance = new window.MatomoTracker({
   urlBase: 'https://LINK.TO.DOMAIN',
   siteId: 3, // optional, default value: `1`
-  userId: '', // optional, default value: `undefined`
+  userId: 'UID76903202', // optional, default value: `undefined`.
   trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
   srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`
   heartBeat: { // optional, enabled by default
