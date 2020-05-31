@@ -13,7 +13,6 @@ export interface CustomDimension {
 export interface UserOptions {
   urlBase: string
   siteId: number
-  userId?: string
   trackerUrl?: string
   srcUrl?: string
   heartBeat?: {
@@ -21,6 +20,9 @@ export interface UserOptions {
     seconds?: number
   }
   linkTracking?: boolean
+  configurations?: {
+    [key: string]: any
+  }
 }
 
 export interface TrackPageViewParams {
