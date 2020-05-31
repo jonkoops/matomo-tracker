@@ -14,9 +14,11 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
-## Unreleased
+## [0.1.5]
 
-- _Added_: include `userId` in the `MatomoTracker.initialize` params
+- Added: [Exposed trackEvents function to useMatomo](https://github.com/Amsterdam/matomo-tracker/commit/79e96929c3fcde56434ec3ad82f24cb77d4225fd#diff-7f21e527da19e9a710bdcbb9a5387cbe)
+- Changed: [TrackEvents on DOM changes using a MutationObserver](https://github.com/Amsterdam/matomo-tracker/issues/160)
+- Added: [include `userId` in the `MatomoTracker.initialize` params](https://github.com/Amsterdam/matomo-tracker/pull/173)
 
 ## [0.1.4]
 
