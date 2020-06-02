@@ -17,7 +17,6 @@ Prefix the change with one of these keywords:
 ## Unreleased
 
 - _Added_: include `configurations` in the `MatomoTracker.initialize` params
-- _Removed_: removed `userId` in the `MatomoTracker.initialize` params (user _configurations_ object instead)
 
 ## [0.1.5]
 
