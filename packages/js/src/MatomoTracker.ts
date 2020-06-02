@@ -33,6 +33,7 @@ class MatomoTracker {
     srcUrl,
     heartBeat,
     linkTracking = true,
+    configurations = {},
   }: UserOptions) {
     if (urlBase[urlBase.length - 1] !== '/') {
       urlBase = urlBase + '/'
@@ -51,6 +52,10 @@ class MatomoTracker {
         if (userId) {
           window._paq.push(['setUserId', userId])
         }
+
+        Object.entries(configurations).forEach((entry) => {
+          window._paq.push([entry[0], entry[1]])
+        })
 
         // accurately measure the time spent on the last pageview of a visit
         if (!heartBeat || (heartBeat && heartBeat.active)) {

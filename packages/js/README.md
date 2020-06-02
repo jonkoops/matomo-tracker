@@ -48,7 +48,13 @@ const MatomoInstance = new window.MatomoTracker({
     active: true, // optional, default value: true
     seconds: 10 // optional, default value: `15
   }
-  linkTracking: false // optional, default value: true
+  linkTracking: false, // optional, default value: true
+  configurations: { // optional, default value: {}
+    // any valid matomo configuration, all below are optional
+    disableCookies: true,
+    setSecureCookie: true,
+    setRequestMethod: 'POST'
+  }
 })
 ```
 

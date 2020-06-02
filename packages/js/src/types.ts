@@ -21,6 +21,9 @@ export interface UserOptions {
     seconds?: number
   }
   linkTracking?: boolean
+  configurations?: {
+    [key: string]: any
+  }
 }
 
 export interface TrackPageViewParams {
