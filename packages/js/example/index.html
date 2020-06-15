@@ -38,10 +38,11 @@
 
     <script src="../bundle.min.js"></script>
     <script>
-      const MatomoInstance = new window.MatomoTracker.default({
-        urlBase: 'https://analytics.data.amsterdam.nl',
-        siteId: 3,
-      })
+      const MatomoInstance = new window.MatomoTracker
+        .default('https://localhost')
+        .setSiteId(3)
+
+      MatomoInstance.initialize()
 
       MatomoInstance.trackEvents()
 

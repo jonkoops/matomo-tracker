@@ -8,8 +8,6 @@ export interface MatomoInstance {
   trackLink?: Function
 }
 
-export interface InstanceParams extends types.UserOptions {}
-
 export interface TrackPageViewParams extends types.TrackPageViewParams {}
 
 export interface TrackEventParams extends types.TrackEventParams {}

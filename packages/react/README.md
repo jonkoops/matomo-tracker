@@ -13,27 +13,21 @@ Before you're able to use this Matomo Tracker you need to create a Matomo instan
 ```js
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 
-const instance = createInstance({
-  urlBase: 'https://LINK.TO.DOMAIN',
-  siteId: 3, // optional, default value: `1`
-  userId: 'UID76903202', // optional, default value: `undefined`.
-  trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
-  srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`
-  heartBeat: { // optional, enabled by default
-    active: true, // optional, default value: true
-    seconds: 10 // optional, default value: `15
-  }
-  linkTracking: false, // optional, default value: true
-  configurations: { // optional, default value: {}
-    // any valid matomo configuration, all below are optional
-    disableCookies: true,
-    setSecureCookie: true,
-    setRequestMethod: 'POST'
-  }
-})
+const instance = createInstance('https://LINK.TO.DOMAIN')
+  .setTrackerUrl('https://LINK.TO.DOMAIN/tracking.php') // optional, default value: `${urlBase}matomo.php`
+  .scriptPath('tracking.js') // optional, default value: `matomo.js`
+  .setSiteId(3) // optional, default value: `1`
+  .setUserId('UID76903202') // optional, default value: `undefined`.
+  .enableHeartBeatTimer(10) // optional, default value: `15
+  .enableLinkTracking(false) // optional, default value: true
+  .disableCookies()
+  .disableQueueRequest()
+  .setRequestMethod('POST')
+  .setSecureCookie(true)
+  .requireConsent()
 
 ReactDOM.render(
-  <MatomoProvider value={instance}>
+  <MatomoProvider value={instance.initialize()}>
     <MyApp />
   </MatomoProvider>,
 )

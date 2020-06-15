@@ -19,9 +19,7 @@ const MatomoInstance = new window.MatomoTracker({ ... })
 ```html
 <script src="./bundle.min.js"></script>
 <script>
-  const MatomoInstance = new window.MatomoTracker.default({
-    /* setup */
-  })
+  const MatomoInstance = new window.MatomoTracker.default('https://LINK.TO.DOMAIN').initialize()
 
   // Load the event listeners
   MatomoInstance.trackEvents()
@@ -38,24 +36,18 @@ Before you're able to use this Matomo Tracker you need to initialize Matomo with
 **Initialize:**
 
 ```js
-const MatomoInstance = new window.MatomoTracker({
-  urlBase: 'https://LINK.TO.DOMAIN',
-  siteId: 3, // optional, default value: `1`
-  userId: 'UID76903202', // optional, default value: `undefined`.
-  trackerUrl: 'https://LINK.TO.DOMAIN/tracking.php', // optional, default value: `${urlBase}matomo.php`
-  srcUrl: 'https://LINK.TO.DOMAIN/tracking.js', // optional, default value: `${urlBase}matomo.js`
-  heartBeat: { // optional, enabled by default
-    active: true, // optional, default value: true
-    seconds: 10 // optional, default value: `15
-  }
-  linkTracking: false, // optional, default value: true
-  configurations: { // optional, default value: {}
-    // any valid matomo configuration, all below are optional
-    disableCookies: true,
-    setSecureCookie: true,
-    setRequestMethod: 'POST'
-  }
-})
+const MatomoInstance = new window.MatomoTracker('https://LINK.TO.DOMAIN')
+  .setTrackerUrl('https://LINK.TO.DOMAIN/tracking.php') // optional, default value: `${urlBase}matomo.php`
+  .scriptPath('tracking.js') // optional, default value: `matomo.js`
+  .setSiteId(3) // optional, default value: `1`
+  .setUserId('UID76903202') // optional, default value: `undefined`.
+  .enableHeartBeatTimer(10) // optional, default value: `15
+  .enableLinkTracking(false) // optional, default value: true
+  .disableCookies()
+  .disableQueueRequest()
+  .setRequestMethod('POST')
+  .setSecureCookie(true)
+  .requireConsent()
 ```
 
 After initialization you can use the Matomo Tracker to track events and page views like this:
@@ -63,9 +55,7 @@ After initialization you can use the Matomo Tracker to track events and page vie
 ```js
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = new MatomoTracker({
-  /* setup */
-})
+const MatomoInstance = new MatomoTracker('https://LINK.TO.DOMAIN')
 
 MatomoInstance.trackPageView()
 
@@ -88,9 +78,7 @@ By default the Matomo Tracker will send the window's document title and location
 ```js
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = new MatomoTracker({
-  /* setup */
-})
+const MatomoInstance = new MatomoTracker('https://LINK.TO.DOMAIN')
 
 MatomoInstance.trackPageView({
   documentTitle: 'Page title', // optional
@@ -129,9 +117,7 @@ Next to the tracking of events, this project also supports tracking site searche
 ```js
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = new MatomoTracker({
-  /* setup */
-})
+const MatomoInstance = new MatomoTracker('https://LINK.TO.DOMAIN')
 
 MatomoInstance.trackSiteSearch({
   keyword: 'test',
@@ -169,7 +155,7 @@ Or if you want to stay away from inline JavaScript events, this project can be u
 
     <script src="./some-dir/bundle.min.js"></script>
     <script>
-      const MatomoInstance = new window.MatomoTracker({ /* setup */ });
+      const MatomoInstance = new window.MatomoTracker('https://LINK.TO.DOMAIN');
 
 	  // Load the event listeners
       MatomoInstance.trackEvents();

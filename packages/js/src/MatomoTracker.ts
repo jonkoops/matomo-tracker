@@ -9,85 +9,70 @@ import {
   TrackEcommerceOrderParams,
   AddEcommerceItemParams,
   SetEcommerceViewParams,
-  UserOptions,
 } from './types'
 
 class MatomoTracker {
+  urlBase: string
+  srcPath: string = 'matomo.js'
   mutationObserver?: MutationObserver
 
-  constructor(userOptions: UserOptions) {
-    const options = { ...defaultOptions, ...userOptions }
-    if (!options.urlBase) {
+  constructor(urlBase: string) {
+    if (!urlBase) {
       throw new Error('Matomo urlBase is required.')
     }
 
-    MatomoTracker.initialize(options)
-  }
-
-  // Initializes the Matomo Tracker
-  static initialize({
-    urlBase,
-    siteId,
-    userId,
-    trackerUrl,
-    srcUrl,
-    heartBeat,
-    linkTracking = true,
-    configurations = {},
-  }: UserOptions) {
     if (urlBase[urlBase.length - 1] !== '/') {
       urlBase = urlBase + '/'
     }
 
-    if (typeof window !== 'undefined') {
-      window._paq = window._paq || []
+    this.urlBase = urlBase
 
-      if (window._paq.length === 0) {
-        window._paq.push([
-          'setTrackerUrl',
-          trackerUrl || `${urlBase}matomo.php`,
-        ])
-        window._paq.push(['setSiteId', siteId])
+    window._paq = window._paq || []
+  }
 
-        if (userId) {
-          window._paq.push(['setUserId', userId])
-        }
+  initialize() {
+    if (!this.isRuleSet('setTrackerUrl')) {
+      window._paq.push(['setTrackerUrl', `${this.urlBase}matomo.php`])
+    }
 
-        Object.entries(configurations).forEach((entry) => {
-          window._paq.push([entry[0], entry[1]])
-        })
+    if (!this.isRuleSet('setSiteId')) {
+      window._paq.push(['setSiteId', defaultOptions.siteId])
+    }
 
-        // accurately measure the time spent on the last pageview of a visit
-        if (!heartBeat || (heartBeat && heartBeat.active)) {
-          this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
-        }
+    if (!this.isRuleSet('enableHeartBeatTimer')) {
+      window._paq.push(['enableHeartBeatTimer', defaultOptions.heartBeatTimer])
+    }
 
-        // // measure outbound links and downloads
-        // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
-        this.enableLinkTracking(linkTracking)
+    const doc = document
+    const scriptElement = doc.createElement('script')
+    const scripts = doc.getElementsByTagName('script')[0]
 
-        const doc = document
-        const scriptElement = doc.createElement('script')
-        const scripts = doc.getElementsByTagName('script')[0]
+    scriptElement.type = 'text/javascript'
+    scriptElement.async = true
+    scriptElement.defer = true
+    scriptElement.src = `${this.urlBase}${this.srcPath}`
 
-        scriptElement.type = 'text/javascript'
-        scriptElement.async = true
-        scriptElement.defer = true
-        scriptElement.src = srcUrl || `${urlBase}matomo.js`
-
-        if (scripts && scripts.parentNode) {
-          scripts.parentNode.insertBefore(scriptElement, scripts)
-        }
-      }
+    if (scripts && scripts.parentNode) {
+      scripts.parentNode.insertBefore(scriptElement, scripts)
     }
   }
 
-  static enableHeartBeatTimer(seconds: number) {
-    window._paq.push(['enableHeartBeatTimer', seconds])
+  scriptPath(srcPath: string) {
+    if (!srcPath || srcPath.search(/:\/\//) > -1) {
+      throw new Error('A valid path is required.')
+    }
+
+    if (srcPath[0] === '/') {
+      srcPath = srcPath.substring(1)
+    }
+
+    this.srcPath = srcPath
+
+    return this
   }
 
-  static enableLinkTracking(active: boolean) {
-    window._paq.push(['enableLinkTracking', active])
+  private isRuleSet(rule: string) {
+    return window._paq.find((ruleSet: string) => ruleSet[0] === rule)
   }
 
   private trackEventsForElements(elements: HTMLElement[]) {
@@ -310,5 +295,43 @@ class MatomoTracker {
     }
   }
 }
+
+const methods = {
+  disableCookies: undefined,
+  disableQueueRequest: undefined,
+  // accurately measure the time spent on the last pageview of a visit
+  enableHeartBeatTimer: Number,
+  // measure outbound links and downloads
+  // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
+  enableLinkTracking: Boolean,
+  requireConsent: undefined,
+  setCookieDomain: String,
+  setCookieNamePrefix: String,
+  setCookiePath: String,
+  setConversionAttributionFirstReferrer: Boolean,
+  setCustomRequestProcessing: Function,
+  setReferralCookieTimeout: Number,
+  setRequestContentType: String,
+  setRequestMethod: String,
+  setSecureCookie: Boolean,
+  setSessionCookieTimeout: Number,
+  setSiteId: Number,
+  setTrackerUrl: String,
+  setUserId: String,
+  setVisitorCookieTimeout: Number,
+}
+
+function createMethod<T>(method: string) {
+  Object.defineProperty(MatomoTracker.prototype, method, {
+    value: function (input: T) {
+      window._paq.push([method, input])
+      return this
+    },
+  })
+}
+
+Object.entries(methods).forEach(([method, type]) => {
+  createMethod<typeof type>(method)
+})
 
 export default MatomoTracker

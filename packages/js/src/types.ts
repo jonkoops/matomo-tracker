@@ -10,22 +10,6 @@ export interface CustomDimension {
   value: string
 }
 
-export interface UserOptions {
-  urlBase: string
-  siteId: number
-  userId?: string
-  trackerUrl?: string
-  srcUrl?: string
-  heartBeat?: {
-    active: boolean
-    seconds?: number
-  }
-  linkTracking?: boolean
-  configurations?: {
-    [key: string]: any
-  }
-}
-
 export interface TrackPageViewParams {
   documentTitle?: string
   href?: string | Location

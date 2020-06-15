@@ -1,5 +1,5 @@
 export const defaultOptions = {
-  urlBase: null,
+  heartBeatTimer: 15,
   siteId: 1,
 }
 
