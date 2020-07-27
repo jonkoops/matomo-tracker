@@ -1,10 +1,3 @@
-declare global {
-  interface Window {
-    _paq: any
-    MatomoTracker: any
-  }
-}
-
 export interface CustomDimension {
   id: number
   value: string

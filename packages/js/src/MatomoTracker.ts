@@ -1,15 +1,15 @@
 import { defaultOptions, TRACK_TYPES } from './constants'
 import {
+  AddEcommerceItemParams,
   CustomDimension,
+  SetEcommerceViewParams,
+  TrackEcommerceOrderParams,
   TrackEventParams,
   TrackLinkParams,
   TrackPageViewParams,
   TrackParams,
   TrackSiteSearchParams,
-  TrackEcommerceOrderParams,
-  AddEcommerceItemParams,
-  SetEcommerceViewParams,
-  UserOptions,
+  UserOptions
 } from './types'
 
 class MatomoTracker {
@@ -21,11 +21,10 @@ class MatomoTracker {
       throw new Error('Matomo urlBase is required.')
     }
 
-    MatomoTracker.initialize(options)
+    this.initialize(options)
   }
 
-  // Initializes the Matomo Tracker
-  static initialize({
+  private initialize({
     urlBase,
     siteId,
     userId,
@@ -39,55 +38,56 @@ class MatomoTracker {
       urlBase = urlBase + '/'
     }
 
-    if (typeof window !== 'undefined') {
-      window._paq = window._paq || []
+    if (typeof window === 'undefined') {
+      return
+    }
 
-      if (window._paq.length === 0) {
-        window._paq.push([
-          'setTrackerUrl',
-          trackerUrl || `${urlBase}matomo.php`,
-        ])
-        window._paq.push(['setSiteId', siteId])
+    window._paq = window._paq || []
 
-        if (userId) {
-          window._paq.push(['setUserId', userId])
-        }
+    if (window._paq.length !== 0) {
+      return
+    }
 
-        Object.entries(configurations).forEach((entry) => {
-          window._paq.push([entry[0], entry[1]])
-        })
+    this.pushInstruction('setTrackerUrl', trackerUrl ?? `${urlBase}matomo.php`)
+    this.pushInstruction('setSiteId', siteId)
 
-        // accurately measure the time spent on the last pageview of a visit
-        if (!heartBeat || (heartBeat && heartBeat.active)) {
-          this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
-        }
+    if (userId) {
+      this.pushInstruction('setUserId', userId)
+    }
 
-        // // measure outbound links and downloads
-        // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
-        this.enableLinkTracking(linkTracking)
+    Object.entries(configurations).forEach((entry) => {
+      this.pushInstruction(entry[0], entry[1])
+    })
 
-        const doc = document
-        const scriptElement = doc.createElement('script')
-        const scripts = doc.getElementsByTagName('script')[0]
+    // accurately measure the time spent on the last pageview of a visit
+    if (!heartBeat || (heartBeat && heartBeat.active)) {
+      this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
+    }
 
-        scriptElement.type = 'text/javascript'
-        scriptElement.async = true
-        scriptElement.defer = true
-        scriptElement.src = srcUrl || `${urlBase}matomo.js`
+    // // measure outbound links and downloads
+    // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
+    this.enableLinkTracking(linkTracking)
 
-        if (scripts && scripts.parentNode) {
-          scripts.parentNode.insertBefore(scriptElement, scripts)
-        }
-      }
+    const doc = document
+    const scriptElement = doc.createElement('script')
+    const scripts = doc.getElementsByTagName('script')[0]
+
+    scriptElement.type = 'text/javascript'
+    scriptElement.async = true
+    scriptElement.defer = true
+    scriptElement.src = srcUrl || `${urlBase}matomo.js`
+
+    if (scripts && scripts.parentNode) {
+      scripts.parentNode.insertBefore(scriptElement, scripts)
     }
   }
 
-  static enableHeartBeatTimer(seconds: number) {
-    window._paq.push(['enableHeartBeatTimer', seconds])
+  enableHeartBeatTimer(seconds: number) {
+    this.pushInstruction('enableHeartBeatTimer', seconds)
   }
 
-  static enableLinkTracking(active: boolean) {
-    window._paq.push(['enableLinkTracking', active])
+  enableLinkTracking(active: boolean) {
+    this.pushInstruction('enableLinkTracking', active)
   }
 
   private trackEventsForElements(elements: HTMLElement[]) {
@@ -200,7 +200,7 @@ class MatomoTracker {
   // Tracks outgoing links to other sites and downloads
   // https://developer.matomo.org/guides/tracking-javascript-guide#enabling-download-outlink-tracking
   trackLink({ href, linkType = 'link' }: TrackLinkParams) {
-    window._paq.push([TRACK_TYPES.TRACK_LINK, href, linkType])
+    this.pushInstruction(TRACK_TYPES.TRACK_LINK, href, linkType)
   }
 
   // Tracks page views
@@ -219,14 +219,14 @@ class MatomoTracker {
     productPrice = 0.0,
     productQuantity = 1,
   }: AddEcommerceItemParams) {
-    window._paq.push([
+    this.pushInstruction(
       'addEcommerceItem',
       sku,
       productName,
       productCategory,
       productPrice,
       productQuantity,
-    ])
+    )
   }
 
   // Tracks an Ecommerce order containing items added via addEcommerceItem.
@@ -256,7 +256,7 @@ class MatomoTracker {
   // This will replace currently tracked information of the cart. Always include all items of the updated cart!
   // https://matomo.org/docs/ecommerce-analytics/#example-tracking-an-ecommerce-cart-update-containing-two-products
   trackEcommerceCartUpdate(amount: number) {
-    window._paq.push([TRACK_TYPES.TRACK_ECOMMERCE_CART_UPDATE, amount])
+    this.pushInstruction(TRACK_TYPES.TRACK_ECOMMERCE_CART_UPDATE, amount)
   }
 
   // Marks the next page view as an Ecommerce product page.
@@ -267,13 +267,13 @@ class MatomoTracker {
     productCategory,
     productPrice,
   }: SetEcommerceViewParams) {
-    window._paq.push([
+    this.pushInstruction(
       'setEcommerceView',
       sku,
       productName,
       productCategory,
       productPrice,
-    ])
+    )
   }
 
   // Marks the next tracked page view as an Ecommerce category page.
@@ -296,17 +296,40 @@ class MatomoTracker {
         customDimensions.length
       ) {
         customDimensions.map((customDimension: CustomDimension) =>
-          window._paq.push([
+          this.pushInstruction(
             'setCustomDimension',
             customDimension.id,
             customDimension.value,
-          ]),
+          ),
         )
       }
 
-      window._paq.push(['setCustomUrl', href])
-      window._paq.push(['setDocumentTitle', documentTitle])
-      window._paq.push(data)
+      this.pushInstruction('setCustomUrl', href)
+      this.pushInstruction('setDocumentTitle', documentTitle)
+      this.pushInstruction(...(data as [string, ...any[]]))
+    }
+  }
+
+  /**
+   * Pushes an instruction to Matomo for execution, this is equivalent to pushing entries into the `_paq` array.
+   *
+   * For example:
+   *
+   * ```ts
+   * pushInstruction('setDocumentTitle', document.title)
+   * ```
+   * Is the equivalent of:
+   *
+   * ```ts
+   * _paq.push(['setDocumentTitle', document.title]);
+   * ```
+   *
+   * @param name The name of the instruction to be executed.
+   * @param args The arguments to pass along with the instruction.
+   */
+  pushInstruction(name: string, ...args: any[]) {
+    if (typeof window !== 'undefined') {
+      window._paq.push([name, ...args])
     }
   }
 }
