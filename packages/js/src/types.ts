@@ -26,7 +26,7 @@ export interface TrackPageViewParams {
 }
 
 export interface TrackParams extends TrackPageViewParams {
-  data: any
+  data: any[]
 }
 
 export interface TrackEventParams extends TrackPageViewParams {

@@ -1,4 +1,4 @@
-import MatomoTracker from "./MatomoTracker"
+import MatomoTracker from './MatomoTracker'
 
 const URL_BASE = 'https://example.com'
 
@@ -7,7 +7,7 @@ describe('MatomoTracker', () => {
     it('should push the instruction', () => {
       const matomo = new MatomoTracker({
         urlBase: URL_BASE,
-        siteId: 1
+        siteId: 1,
       })
 
       window._paq = []

@@ -4,17 +4,6 @@
     "module": "commonjs",
     "jsx": "react",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "jest",
-      "node",
-      "react",
-      "react-dom"
-    ],
     "baseUrl": ".",
     "paths": {
       "@datapunt/*": ["packages/*/src"]

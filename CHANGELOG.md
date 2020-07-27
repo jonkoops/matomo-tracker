@@ -17,6 +17,7 @@ Prefix the change with one of these keywords:
 ## Unreleased
 
 - _Added_: include `configurations` in the `MatomoTracker.initialize` params
+- _Added_: add a generic `pushInstruction` method to pass instructions to Matomo
 
 ## [0.1.5]
 

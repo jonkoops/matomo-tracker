@@ -9,7 +9,7 @@ import {
   TrackPageViewParams,
   TrackParams,
   TrackSiteSearchParams,
-  UserOptions
+  UserOptions,
 } from './types'
 
 class MatomoTracker {
@@ -17,6 +17,7 @@ class MatomoTracker {
 
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
+
     if (!options.urlBase) {
       throw new Error('Matomo urlBase is required.')
     }
@@ -34,9 +35,8 @@ class MatomoTracker {
     linkTracking = true,
     configurations = {},
   }: UserOptions) {
-    if (urlBase[urlBase.length - 1] !== '/') {
-      urlBase = urlBase + '/'
-    }
+    const normalizedUrlBase =
+      urlBase[urlBase.length - 1] !== '/' ? `${urlBase}/` : urlBase
 
     if (typeof window === 'undefined') {
       return
@@ -48,7 +48,11 @@ class MatomoTracker {
       return
     }
 
-    this.pushInstruction('setTrackerUrl', trackerUrl ?? `${urlBase}matomo.php`)
+    this.pushInstruction(
+      'setTrackerUrl',
+      trackerUrl ?? `${normalizedUrlBase}matomo.php`,
+    )
+
     this.pushInstruction('setSiteId', siteId)
 
     if (userId) {
@@ -75,18 +79,18 @@ class MatomoTracker {
     scriptElement.type = 'text/javascript'
     scriptElement.async = true
     scriptElement.defer = true
-    scriptElement.src = srcUrl || `${urlBase}matomo.js`
+    scriptElement.src = srcUrl || `${normalizedUrlBase}matomo.js`
 
     if (scripts && scripts.parentNode) {
       scripts.parentNode.insertBefore(scriptElement, scripts)
     }
   }
 
-  enableHeartBeatTimer(seconds: number) {
+  enableHeartBeatTimer(seconds: number): void {
     this.pushInstruction('enableHeartBeatTimer', seconds)
   }
 
-  enableLinkTracking(active: boolean) {
+  enableLinkTracking(active: boolean): void {
     this.pushInstruction('enableLinkTracking', active)
   }
 
@@ -118,14 +122,13 @@ class MatomoTracker {
   }
 
   // Tracks events based on data attributes
-  trackEvents() {
+  trackEvents(): void {
     const matchString = '[data-matomo-event="click"]'
     let firstTime = false
     if (!this.mutationObserver) {
       firstTime = true
       this.mutationObserver = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          // Iterate over NodeList by indices (es15 does not allow using 'let node of mutation.addedNodes')
+        mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((node) => {
             // only track HTML elements
             if (!(node instanceof HTMLElement)) return
@@ -140,7 +143,7 @@ class MatomoTracker {
             )
             this.trackEventsForElements(elements)
           })
-        }
+        })
       })
     }
     this.mutationObserver.observe(document, { childList: true, subtree: true })
@@ -154,7 +157,7 @@ class MatomoTracker {
     }
   }
 
-  stopObserving() {
+  stopObserving(): void {
     if (this.mutationObserver) {
       this.mutationObserver.disconnect()
     }
@@ -168,7 +171,7 @@ class MatomoTracker {
     name,
     value,
     ...otherParams
-  }: TrackEventParams) {
+  }: TrackEventParams): void {
     if (category && action) {
       this.track({
         data: [TRACK_TYPES.TRACK_EVENT, category, action, name, value],
@@ -186,7 +189,7 @@ class MatomoTracker {
     category,
     count,
     ...otherParams
-  }: TrackSiteSearchParams) {
+  }: TrackSiteSearchParams): void {
     if (keyword) {
       this.track({
         data: [TRACK_TYPES.TRACK_SEARCH, keyword, category, count],
@@ -199,13 +202,13 @@ class MatomoTracker {
 
   // Tracks outgoing links to other sites and downloads
   // https://developer.matomo.org/guides/tracking-javascript-guide#enabling-download-outlink-tracking
-  trackLink({ href, linkType = 'link' }: TrackLinkParams) {
+  trackLink({ href, linkType = 'link' }: TrackLinkParams): void {
     this.pushInstruction(TRACK_TYPES.TRACK_LINK, href, linkType)
   }
 
   // Tracks page views
   // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
-  trackPageView(params: TrackPageViewParams) {
+  trackPageView(params: TrackPageViewParams): void {
     this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params })
   }
 
@@ -218,7 +221,7 @@ class MatomoTracker {
     productCategory,
     productPrice = 0.0,
     productQuantity = 1,
-  }: AddEcommerceItemParams) {
+  }: AddEcommerceItemParams): void {
     this.pushInstruction(
       'addEcommerceItem',
       sku,
@@ -238,7 +241,7 @@ class MatomoTracker {
     taxAmount,
     shippingAmount,
     discountOffered = false,
-  }: TrackEcommerceOrderParams) {
+  }: TrackEcommerceOrderParams): void {
     this.track({
       data: [
         TRACK_TYPES.TRACK_ECOMMERCE_ORDER,
@@ -255,7 +258,7 @@ class MatomoTracker {
   // Tracks updates to an Ecommerce Cart before an actual purchase.
   // This will replace currently tracked information of the cart. Always include all items of the updated cart!
   // https://matomo.org/docs/ecommerce-analytics/#example-tracking-an-ecommerce-cart-update-containing-two-products
-  trackEcommerceCartUpdate(amount: number) {
+  trackEcommerceCartUpdate(amount: number): void {
     this.pushInstruction(TRACK_TYPES.TRACK_ECOMMERCE_CART_UPDATE, amount)
   }
 
@@ -266,7 +269,7 @@ class MatomoTracker {
     productName,
     productCategory,
     productPrice,
-  }: SetEcommerceViewParams) {
+  }: SetEcommerceViewParams): void {
     this.pushInstruction(
       'setEcommerceView',
       sku,
@@ -278,7 +281,7 @@ class MatomoTracker {
 
   // Marks the next tracked page view as an Ecommerce category page.
   // https://matomo.org/docs/ecommerce-analytics/#example-tracking-a-category-page-view
-  setEcommerceCategoryView(productCategory: string) {
+  setEcommerceCategoryView(productCategory: string): void {
     this.setEcommerceView({ productCategory, productName: false, sku: false })
   }
 
@@ -288,7 +291,7 @@ class MatomoTracker {
     documentTitle = window.document.title,
     href = window.location.href,
     customDimensions = false,
-  }: TrackParams) {
+  }: TrackParams): void {
     if (data.length) {
       if (
         customDimensions &&
@@ -327,10 +330,13 @@ class MatomoTracker {
    * @param name The name of the instruction to be executed.
    * @param args The arguments to pass along with the instruction.
    */
-  pushInstruction(name: string, ...args: any[]) {
+  pushInstruction(name: string, ...args: any[]): MatomoTracker {
     if (typeof window !== 'undefined') {
+      // eslint-disable-next-line
       window._paq.push([name, ...args])
     }
+
+    return this
   }
 }
 

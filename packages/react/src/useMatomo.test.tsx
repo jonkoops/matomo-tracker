@@ -1,8 +1,9 @@
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
 import MatomoTracker from '@datapunt/matomo-tracker-js'
-import MatomoProvider from './MatomoProvider'
+import { fireEvent, render } from '@testing-library/react'
+import React from 'react'
+import { mocked } from 'ts-jest/utils'
 import createInstance from './instance'
+import MatomoProvider from './MatomoProvider'
 import useMatomo from './useMatomo'
 
 jest.mock('@datapunt/matomo-tracker-js')
@@ -31,11 +32,14 @@ describe('useMatomo', () => {
   it('should render, call trackPageView once and call trackEvent when clicking a button', () => {
     const trackEventMock = jest.fn()
     const trackPageViewMock = jest.fn()
-    const mockedMatomoTracker = MatomoTracker as jest.Mocked<any>
-    mockedMatomoTracker.mockImplementation(() => ({
-      trackEvent: trackEventMock,
-      trackPageView: trackPageViewMock,
-    }))
+    const mockedMatomoTracker = mocked(MatomoTracker)
+    mockedMatomoTracker.mockImplementation(
+      () =>
+        (({
+          trackEvent: trackEventMock,
+          trackPageView: trackPageViewMock,
+        } as unknown) as MatomoTracker),
+    )
 
     const instance = createInstance({
       urlBase: 'https://LINK.TO.DOMAIN',
