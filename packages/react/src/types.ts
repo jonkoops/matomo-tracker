@@ -1,19 +1,19 @@
-import { types } from '@datapunt/matomo-tracker-js'
+import MatomoTracker, { types } from '@datapunt/matomo-tracker-js'
 
 export interface MatomoInstance {
-  trackEvent?: Function
-  trackEvents?: Function
-  trackPageView?: Function
-  trackSiteSearch?: Function
-  trackLink?: Function
+  trackEvent?: MatomoTracker['trackEvent']
+  trackEvents?: MatomoTracker['trackEvents']
+  trackPageView?: MatomoTracker['trackPageView']
+  trackSiteSearch?: MatomoTracker['trackSiteSearch']
+  trackLink?: MatomoTracker['trackLink']
 }
 
-export interface InstanceParams extends types.UserOptions {}
+export type InstanceParams = types.UserOptions
 
-export interface TrackPageViewParams extends types.TrackPageViewParams {}
+export type TrackPageViewParams = types.TrackPageViewParams
 
-export interface TrackEventParams extends types.TrackEventParams {}
+export type TrackEventParams = types.TrackEventParams
 
-export interface TrackSiteSearchParams extends types.TrackSiteSearchParams {}
+export type TrackSiteSearchParams = types.TrackSiteSearchParams
 
-export interface TrackLinkParams extends types.TrackLinkParams {}
+export type TrackLinkParams = types.TrackLinkParams

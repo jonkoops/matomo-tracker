@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    'standard',
-    '../../.eslintrc.js',
-  ],
-  env: {
-    'jest/globals': true,
+  rules: {
+    'no-underscore-dangle': ['error', { allow: ['_paq'] }],
   },
 }

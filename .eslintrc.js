@@ -1,35 +1,16 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  env: {
-    browser: true,
-    commonjs: true,
-    es6: true,
-  },
-  plugins: ['prettier', '@typescript-eslint'],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
+  extends: [
+    'airbnb-typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:prettier/recommended',
+    'plugin:jest/recommended',
+    'prettier/@typescript-eslint',
+  ],
   parserOptions: {
-    ecmaVersion: 2018,
+    project: './tsconfig.eslint.json',
   },
-  extends: ['prettier'],
   rules: {
-    'prettier/prettier': 'error',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        vars: 'all',
-        args: 'after-used',
-        ignoreRestSiblings: false,
-      },
-    ],
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx'],
-      },
-    },
+    'import/no-extraneous-dependencies': 'off',
   },
 }
