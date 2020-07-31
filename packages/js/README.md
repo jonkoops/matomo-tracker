@@ -63,7 +63,7 @@ After initialization you can use the Matomo Tracker to track events and page vie
 ```js
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = new MatomoTracker({
+const MatomoInstance = new window.MatomoTracker({
   /* setup */
 })
 
@@ -88,7 +88,7 @@ By default the Matomo Tracker will send the window's document title and location
 ```js
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = new MatomoTracker({
+const MatomoInstance = new window.MatomoTracker({
   /* setup */
 })
 
@@ -129,7 +129,7 @@ Next to the tracking of events, this project also supports tracking site searche
 ```js
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 
-const MatomoInstance = new MatomoTracker({
+const MatomoInstance = new window.MatomoTracker({
   /* setup */
 })
 
