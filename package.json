@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b --clean && tsc -b packages/**/tsconfig.json && tsc -b packages/**/tsconfig.es.json",
+    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b --clean && tsc -b packages/js/tsconfig.json && tsc -b packages/js/tsconfig.es.json",
     "clean:generated": "find ./packages -name \"*.d.ts\" -type f -delete && find ./packages -name \"*.tsbuildinfo\" -type f -delete",
     "start": "yarn build -w",
     "start:example:js": "yarn build && npx http-server ./packages/js -o /example",
