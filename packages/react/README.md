@@ -4,13 +4,15 @@ Stand alone library for using Matamo tracking in React projects
 
 ## Installation
 
-Installing with npm: `npm i --save @datapunt/matomo-tracker-react` or yarn `yarn add @datapunt/matomo-tracker-react`
+```sh
+npm install @datapunt/matomo-tracker-react
+```
 
 ## Usage
 
 Before you're able to use this Matomo Tracker you need to create a Matomo instance with your project specific details, and wrap your application with the `MatomoProvider` that this package exposes.
 
-```js
+```tsx
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 
 const instance = createInstance({
@@ -41,7 +43,7 @@ ReactDOM.render(
 
 After wrapping your application with the `MatomoProvider` you can use the `useMatomo` hook to track your application from anywhere within the MatomoProvider component tree:
 
-```js
+```tsx
 import React from 'react'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
@@ -70,7 +72,7 @@ const MyPage = () => {
 
 By default the Matomo Tracker will send the window's document title and location, or send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
 
-```js
+```tsx
 import React from 'react'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
@@ -106,7 +108,7 @@ const MyPage = () => {
 
 And you can do the same for the `trackEvent` method:
 
-```js
+```tsx
 import React from 'react'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
@@ -143,7 +145,7 @@ const MyPage = () => {
 
 Matomo provides the option to track outbound link, however, this implementation is flaky for a SPA (Single Page Application) **without** SSR (Server Side Rendering) across different versions of Matomo. Therefore you can use the `enableLinkTracking` method to listen to outbound clicks on anchor elements. This method should be placed on a component directly below your `MatomoProvider` on a component that's rendered on every page view. Also, make sure to disable the `enableLinkTracking` option on the instance passed to the provider to prevent Matomo from catching some link clicks:
 
-```js
+```tsx
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 
 const instance = createInstance({
@@ -172,4 +174,3 @@ const MyApp = () => {
 ## References
 
 - [Matomo JavaScript Tracking Guide](https://developer.matomo.org/guides/tracking-javascript-guide)
-```
