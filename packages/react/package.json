@@ -3,6 +3,7 @@
   "version": "0.1.5",
   "description": "Matomo tracker for react projects",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MPL-2.0",
   "author": "Datapunt Amsterdam",
   "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",

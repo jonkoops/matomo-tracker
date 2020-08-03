@@ -30,14 +30,5 @@
   "references": [
     { "path": "packages/js" },
     { "path": "packages/react" }
-  ],
-  "exclude": [
-    "node_modules",
-    "lib"
-  ],
-  "include": [
-    "packages",
-    "**/*.tsx",
-    "**/*.ts"
   ]
 }

@@ -4,6 +4,11 @@
     "rootDir": "./src",
     "outDir": "./lib"
   },
-  "exclude": ["./lib", "./es", "*./src/**/*.test.ts"],
-  "include": ["./src"]
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.*"
+  ]
 }
