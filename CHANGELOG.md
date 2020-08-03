@@ -18,6 +18,7 @@ Prefix the change with one of these keywords:
 
 - _Added_: include `configurations` in the `MatomoTracker.initialize` params
 - _Added_: add a generic `pushInstruction` method to pass instructions to Matomo
+- _Removed_: removed the `window.MatomoTracker` global
 
 ## [0.1.5]
 
