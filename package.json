@@ -7,7 +7,7 @@
     "clean:generated": "find ./packages -name \"*.d.ts\" -type f -delete && find ./packages -name \"*.tsbuildinfo\" -type f -delete",
     "start": "yarn build -w",
     "start:example:js": "yarn build && npx http-server ./packages/js -o /example",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint .",
     "test": "jest",
     "prettier": "prettier --write './packages/**/**/*.{ts,tsx}'",
     "prepublishOnly": "yarn build",
