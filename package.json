@@ -9,7 +9,7 @@
     "start:example:js": "yarn build && npx http-server ./packages/js -o /example",
     "lint": "eslint .",
     "test": "jest",
-    "prettier": "prettier --write './packages/**/**/*.{ts,tsx}'",
+    "prettier": "prettier --write ./packages/**/**/*.{ts,tsx}",
     "prepublishOnly": "yarn build",
     "postinstall": "lerna link"
   },
