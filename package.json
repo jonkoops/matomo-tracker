@@ -1,14 +1,16 @@
 {
   "private": true,
   "scripts": {
-    "build": "lerna exec --scope @datapunt/matomo-tracker-js -- yarn build && tsc -b --clean && tsc -b packages/**/tsconfig.json && tsc -b packages/**/tsconfig.es.json",
+    "build": "yarn build:ts && yarn build:ts:es",
+    "build:ts": "tsc -b packages/js packages/react",
+    "build:ts:es": "tsc -b packages/js/tsconfig.es.json packages/react/tsconfig.es.json",
     "clean:generated": "find ./packages -name \"*.d.ts\" -type f -delete && find ./packages -name \"*.tsbuildinfo\" -type f -delete",
     "start": "yarn build -w",
     "start:example:js": "yarn build && npx http-server ./packages/js -o /example",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint .",
     "pretest": "yarn build",
     "test": "jest",
-    "prettier": "prettier --write './packages/**/**/*.{ts,tsx}'",
+    "prettier": "prettier --write ./packages/**/**/*.{ts,tsx}",
     "prepublishOnly": "yarn build",
     "postinstall": "lerna link"
   },
@@ -38,9 +40,6 @@
     "prettier": "^2.0.5",
     "react": "16.13.1",
     "react-dom": "^16.12.0",
-    "rollup": "^1.31.1",
-    "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-uglify": "^6.0.4",
     "ts-jest": "^25.2.0",
     "tslib": "^2.0.0",
     "typescript": "^3.7.5"
