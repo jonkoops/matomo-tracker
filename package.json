@@ -32,7 +32,7 @@
     "eslint-plugin-react": "^7.20.4",
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.3",
-    "jest": "^25.1.0",
+    "jest": "^26.2.2",
     "jest-cli": "^26.0.1",
     "lerna": "^3.20.2",
     "lint-staged": "^10.0.7",
