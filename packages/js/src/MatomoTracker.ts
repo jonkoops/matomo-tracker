@@ -65,7 +65,7 @@ class MatomoTracker {
 
     // accurately measure the time spent on the last pageview of a visit
     if (!heartBeat || (heartBeat && heartBeat.active)) {
-      this.enableHeartBeatTimer(15 || (heartBeat && heartBeat.seconds))
+      this.enableHeartBeatTimer((heartBeat && heartBeat.seconds) ?? 15)
     }
 
     // // measure outbound links and downloads
