@@ -9,6 +9,7 @@ export interface UserOptions {
   userId?: string
   trackerUrl?: string
   srcUrl?: string
+  disabled?: boolean
   heartBeat?: {
     active: boolean
     seconds?: number

@@ -31,6 +31,7 @@ class MatomoTracker {
     userId,
     trackerUrl,
     srcUrl,
+    disabled,
     heartBeat,
     linkTracking = true,
     configurations = {},
@@ -45,6 +46,10 @@ class MatomoTracker {
     window._paq = window._paq || []
 
     if (window._paq.length !== 0) {
+      return
+    }
+
+    if (disabled) {
       return
     }
 
