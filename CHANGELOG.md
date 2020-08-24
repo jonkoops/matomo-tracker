@@ -18,6 +18,7 @@ Prefix the change with one of these keywords:
 
 - _Added_: include `configurations` in the `MatomoTracker.initialize` params
 - _Added_: add a generic `pushInstruction` method to pass instructions to Matomo
+- _Added_: add `disabled` flag to options to make all tracking calls no-ops
 - _Removed_: removed the `window.MatomoTracker` global
 - _Fixed_: enableHeartBeat always set default seconds value
 
