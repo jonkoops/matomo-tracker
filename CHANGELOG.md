@@ -14,13 +14,13 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
-## Unreleased
+## [0.2.0]
 
-- _Added_: include `configurations` in the `MatomoTracker.initialize` params
-- _Added_: add a generic `pushInstruction` method to pass instructions to Matomo
-- _Added_: add `disabled` flag to options to make all tracking calls no-ops
-- _Removed_: removed the `window.MatomoTracker` global
-- _Fixed_: enableHeartBeat always set default seconds value
+- Added: include `configurations` in the `MatomoTracker.initialize` params
+- Added: add a generic `pushInstruction` method to pass instructions to Matomo
+- Added: add `disabled` flag to options to make all tracking calls no-ops
+- Removed: removed the `window.MatomoTracker` global
+- Fixed: enableHeartBeat always set default seconds value
 
 ## [0.1.5]
 
