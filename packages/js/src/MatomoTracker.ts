@@ -1,4 +1,4 @@
-import { defaultOptions, TRACK_TYPES } from './constants'
+import { TRACK_TYPES } from './constants'
 import {
   AddEcommerceItemParams,
   CustomDimension,
@@ -16,13 +16,14 @@ class MatomoTracker {
   mutationObserver?: MutationObserver
 
   constructor(userOptions: UserOptions) {
-    const options = { ...defaultOptions, ...userOptions }
-
-    if (!options.urlBase) {
+    if (!userOptions.urlBase) {
       throw new Error('Matomo urlBase is required.')
     }
+    if (!userOptions.siteId) {
+      throw new Error('Matomo siteId is required.')
+    }
 
-    this.initialize(options)
+    this.initialize(userOptions)
   }
 
   private initialize({

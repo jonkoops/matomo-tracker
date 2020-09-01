@@ -1,8 +1,4 @@
-export const defaultOptions = {
-  urlBase: null,
-  siteId: 1,
-}
-
+// eslint-disable-next-line import/prefer-default-export
 export const TRACK_TYPES = {
   TRACK_EVENT: 'trackEvent',
   TRACK_LINK: 'trackLink',
