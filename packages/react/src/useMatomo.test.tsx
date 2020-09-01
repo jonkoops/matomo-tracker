@@ -38,7 +38,7 @@ describe('useMatomo', () => {
         (({
           trackEvent: trackEventMock,
           trackPageView: trackPageViewMock,
-        } as unknown) as MatomoTracker),
+        } as any) as MatomoTracker),
     )
 
     const instance = createInstance({

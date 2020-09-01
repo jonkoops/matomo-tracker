@@ -13,7 +13,7 @@ import {
 } from './types'
 
 class MatomoTracker {
-  mutationObserver?: MutationObserver
+  private mutationObserver?: MutationObserver
 
   constructor(userOptions: UserOptions) {
     const options = { ...defaultOptions, ...userOptions }
