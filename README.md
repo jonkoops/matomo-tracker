@@ -17,3 +17,7 @@ This monorepo hosts two Matomo projects for tracking (user) analytics in fronten
 ## References
 
 - [Matomo JavaScript Tracking Guide](https://developer.matomo.org/guides/tracking-javascript-guide)
+
+## Example project
+
+- [Example of a React project](https://github.com/Amsterdam/matomo-tracker/tree/master/examples/react-example)
