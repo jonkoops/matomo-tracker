@@ -14,6 +14,9 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
+## [Unreleased]
+
+- [BREAKING] Changed: The `siteId` option in the `MatomoTracker` constructor is now required.
 
 ## [0.2.1]
 
