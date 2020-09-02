@@ -14,9 +14,11 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
+
 ## [Unreleased]
 
-- Fixed: Made `trackPageView` `params` argument optional
+- Fixed: The `params` argument for the `trackPageView` method is now optional
+- Fixed: The `pushInstruction` method is now exposed through `useMatomo`
 
 ## [0.2.0]
 

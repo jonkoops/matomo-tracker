@@ -6,6 +6,7 @@ export interface MatomoInstance {
   trackPageView?: MatomoTracker['trackPageView']
   trackSiteSearch?: MatomoTracker['trackSiteSearch']
   trackLink?: MatomoTracker['trackLink']
+  pushInstruction?: MatomoTracker['pushInstruction']
 }
 
 export type InstanceParams = types.UserOptions
