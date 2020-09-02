@@ -142,6 +142,21 @@ const MyPage = () => {
 }
 ```
 
+The `useMatomo` hook also exposes the following methods:
+* `trackEvents()`
+* `trackSiteSearch()`
+* `trackLink()`
+* `pushInstruction()`
+
+For example, the `pushInstruction()` function can be used to push instructions to Matomo for execution. This
+is equivalent to pushing entries into the `_paq` array.
+
+
+```javascript
+const { pushInstruction } = useMatomo();
+pushInstruction('setUserId', 'USER_ID_HERE');
+```
+
 ## SPA Link Tracking
 
 Matomo provides the option to track outbound link, however, this implementation is flaky for a SPA (Single Page Application) **without** SSR (Server Side Rendering) across different versions of Matomo. Therefore you can use the `enableLinkTracking` method to listen to outbound clicks on anchor elements. This method should be placed on a component directly below your `MatomoProvider` on a component that's rendered on every page view. Also, make sure to disable the `enableLinkTracking` option on the instance passed to the provider to prevent Matomo from catching some link clicks:
