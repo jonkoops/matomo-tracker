@@ -213,7 +213,7 @@ class MatomoTracker {
 
   // Tracks page views
   // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
-  trackPageView(params: TrackPageViewParams): void {
+  trackPageView(params?: TrackPageViewParams): void {
     this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params })
   }
 
