@@ -28,6 +28,12 @@ function useMatomo() {
 
   const enableLinkTracking = () => useOutboundClickListener(instance)
 
+  const pushInstruction = (name: string, ...args: any[]) => {
+    if (instance.pushInstruction) {
+      instance.pushInstruction(name, ...args)
+    }
+  }
+
   return {
     trackEvent,
     trackEvents,
@@ -35,6 +41,7 @@ function useMatomo() {
     trackSiteSearch,
     trackLink,
     enableLinkTracking,
+    pushInstruction,
   }
 }
 
