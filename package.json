@@ -18,7 +18,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@testing-library/react": "^10.4.9",
+    "@testing-library/react": "^11.0.2",
     "@types/jest": "^26.0.12",
     "@types/react": "^16.9.49",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
