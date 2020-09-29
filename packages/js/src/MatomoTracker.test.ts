@@ -14,6 +14,12 @@ describe('MatomoTracker', () => {
     ).toThrowError()
   })
 
+  it('throws no error with empty urlBase or siteId in options', () => {
+    expect(
+      () => new MatomoTracker({ urlBase: '', siteId: 0 }),
+    ).not.toThrowError()
+  })
+
   describe('pushInstruction', () => {
     it('should push the instruction', () => {
       const matomo = new MatomoTracker({
