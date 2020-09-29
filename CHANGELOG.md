@@ -16,6 +16,7 @@ Prefix the change with one of these keywords:
 
 ## [Unreleased]
 
+- Fixed: Allow empty for `urlBase` and `siteId`.
 - [BREAKING] Changed: The `siteId` option in the `MatomoTracker` constructor is now required.
 
 ## [0.2.1]
