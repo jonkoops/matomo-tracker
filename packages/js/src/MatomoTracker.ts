@@ -16,10 +16,10 @@ class MatomoTracker {
   mutationObserver?: MutationObserver
 
   constructor(userOptions: UserOptions) {
-    if (!userOptions.urlBase) {
+    if (userOptions.urlBase === null || userOptions.urlBase === undefined) {
       throw new Error('Matomo urlBase is required.')
     }
-    if (!userOptions.siteId) {
+    if (userOptions.siteId === null || userOptions.siteId === undefined) {
       throw new Error('Matomo siteId is required.')
     }
 
