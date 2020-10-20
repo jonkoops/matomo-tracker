@@ -1,38 +1,50 @@
-import React from 'react'
+import { useCallback, useContext } from 'react'
 import MatomoContext from './MatomoContext'
 import {
-  MatomoInstance,
-  TrackPageViewParams,
   TrackEventParams,
-  TrackSiteSearchParams,
   TrackLinkParams,
+  TrackPageViewParams,
+  TrackSiteSearchParams,
 } from './types'
 import useOutboundClickListener from './utils/useOutboundClickListener'
 
 function useMatomo() {
-  const instance: MatomoInstance = React.useContext(MatomoContext)
+  const instance = useContext(MatomoContext)
 
-  const trackPageView = (params: TrackPageViewParams) =>
-    instance.trackPageView && instance.trackPageView(params)
+  const trackPageView = useCallback(
+    (params: TrackPageViewParams) => instance?.trackPageView(params),
+    [instance],
+  )
 
-  const trackEvent = (params: TrackEventParams) =>
-    instance.trackEvent && instance.trackEvent(params)
+  const trackEvent = useCallback(
+    (params: TrackEventParams) => instance?.trackEvent(params),
+    [instance],
+  )
 
-  const trackEvents = () => instance.trackEvents && instance.trackEvents()
+  const trackEvents = useCallback(() => instance?.trackEvents(), [instance])
 
-  const trackSiteSearch = (params: TrackSiteSearchParams) =>
-    instance.trackSiteSearch && instance.trackSiteSearch(params)
+  const trackSiteSearch = useCallback(
+    (params: TrackSiteSearchParams) => instance?.trackSiteSearch(params),
+    [instance],
+  )
 
-  const trackLink = (params: TrackLinkParams) =>
-    instance.trackLink && instance.trackLink(params)
+  const trackLink = useCallback(
+    (params: TrackLinkParams) => instance?.trackLink(params),
+    [instance],
+  )
 
-  const enableLinkTracking = () => useOutboundClickListener(instance)
-
-  const pushInstruction = (name: string, ...args: any[]) => {
-    if (instance.pushInstruction) {
-      instance.pushInstruction(name, ...args)
+  const enableLinkTracking = useCallback(() => {
+    if (instance) {
+      useOutboundClickListener(instance)
     }
-  }
+  }, [instance])
+
+  const pushInstruction = useCallback(
+    (name: string, ...args: any[]) => {
+      instance?.pushInstruction(name, ...args)
+    },
+    [instance],
+  )
 
   return {
     trackEvent,
