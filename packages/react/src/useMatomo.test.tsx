@@ -1,5 +1,6 @@
 import MatomoTracker from '@datapunt/matomo-tracker-js'
 import { fireEvent, render } from '@testing-library/react'
+import { renderHook } from '@testing-library/react-hooks'
 import React from 'react'
 import { mocked } from 'ts-jest/utils'
 import createInstance from './instance'
@@ -64,5 +65,26 @@ describe('useMatomo', () => {
       category: 'sample-page',
       action: 'click-event',
     })
+  })
+
+  it('memoizes the methods between renders', () => {
+    const instance = new MatomoTracker({
+      urlBase: 'https://LINK.TO.DOMAIN',
+      siteId: 3, // optional, default value: `1`
+    })
+
+    const { result, rerender } = renderHook(() => useMatomo(), {
+      wrapper: ({ children }) => (
+        <MatomoProvider value={instance}>{children}</MatomoProvider>
+      ),
+    })
+
+    const originalMethods = result.current
+
+    rerender()
+
+    expect(Object.values(originalMethods)).toEqual(
+      Object.values(result.current),
+    )
   })
 })

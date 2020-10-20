@@ -1,12 +1,12 @@
 import MatomoTracker, { types } from '@datapunt/matomo-tracker-js'
 
 export interface MatomoInstance {
-  trackEvent?: MatomoTracker['trackEvent']
-  trackEvents?: MatomoTracker['trackEvents']
-  trackPageView?: MatomoTracker['trackPageView']
-  trackSiteSearch?: MatomoTracker['trackSiteSearch']
-  trackLink?: MatomoTracker['trackLink']
-  pushInstruction?: MatomoTracker['pushInstruction']
+  trackEvent: MatomoTracker['trackEvent']
+  trackEvents: MatomoTracker['trackEvents']
+  trackPageView: MatomoTracker['trackPageView']
+  trackSiteSearch: MatomoTracker['trackSiteSearch']
+  trackLink: MatomoTracker['trackLink']
+  pushInstruction: MatomoTracker['pushInstruction']
 }
 
 export type InstanceParams = types.UserOptions
