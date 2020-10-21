@@ -14,10 +14,10 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
-## [Unreleased]
+## [0.3.0]
 
 - Changed: methods returned from `useMatomo` are now memoized so they can be tracked as dependencies (for example in `useEffect`)
-- [BREAKING] Changed: The `siteId` option in the `MatomoTracker` constructor is now required.
+- **[BREAKING]** Changed: The `siteId` option in the `MatomoTracker` constructor is now required.
 
 ## [0.2.1]
 
