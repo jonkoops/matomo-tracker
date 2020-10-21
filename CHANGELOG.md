@@ -14,6 +14,10 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
+# UNRELEASED
+
+- Fixed: External links not being tracked
+
 ## [0.3.0]
 
 - Changed: methods returned from `useMatomo` are now memoized so they can be tracked as dependencies (for example in `useEffect`)
