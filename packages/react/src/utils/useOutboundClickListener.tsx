@@ -1,7 +1,7 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { MatomoInstance } from '../types'
 
-const useOutboundClickListener = ({ trackLink }: MatomoInstance): void => {
+const useOutboundClickListener = (matomoInstance: MatomoInstance): void => {
   const handleOutboundClick = (event: MouseEvent) => {
     if (!event.target) {
       return
@@ -10,7 +10,7 @@ const useOutboundClickListener = ({ trackLink }: MatomoInstance): void => {
     const { target } = event
     const { nodeName } = target as HTMLElement
 
-    if (nodeName === 'A' && trackLink) {
+    if (nodeName === 'A' && matomoInstance.trackLink) {
       const { href } = target as HTMLAnchorElement // We know from the nodeName that the element is an anchor
       // Check if the click target differs from the current hostname, meaning it's external
       if (
@@ -22,13 +22,13 @@ const useOutboundClickListener = ({ trackLink }: MatomoInstance): void => {
           ),
         )
       ) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        trackLink({ href })
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+        matomoInstance.trackLink.call(matomoInstance, { href })
       }
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.document.addEventListener('click', handleOutboundClick)
 
     return () =>
