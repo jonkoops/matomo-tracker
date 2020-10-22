@@ -14,7 +14,7 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
-# UNRELEASED
+## [0.3.1]
 
 - Fixed: External links not being tracked
 
