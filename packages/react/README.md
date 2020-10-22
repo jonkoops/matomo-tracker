@@ -159,7 +159,7 @@ pushInstruction('setUserId', 'USER_ID_HERE');
 
 ## SPA Link Tracking
 
-Matomo provides the option to track outbound link, however, this implementation is flaky for a SPA (Single Page Application) **without** SSR (Server Side Rendering) across different versions of Matomo. Therefore you can use the `enableLinkTracking` method to listen to outbound clicks on anchor elements. This method should be placed on a component directly below your `MatomoProvider` on a component that's rendered on every page view. Also, make sure to disable the `enableLinkTracking` option on the instance passed to the provider to prevent Matomo from catching some link clicks:
+Matomo provides the option to track outbound link, however, this implementation is flaky for a SPA (Single Page Application) **without** SSR (Server Side Rendering) across different versions of Matomo. Therefore you can use the `enableLinkTracking` method to listen to outbound clicks on anchor elements. This method should be placed on a component directly below your `MatomoProvider` on a component that's rendered on every page view. Also, make sure to disable the `linkTracking` option on the instance passed to the provider to prevent Matomo from catching some link clicks:
 
 ```tsx
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
