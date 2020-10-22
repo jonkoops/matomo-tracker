@@ -3,29 +3,23 @@ import { MatomoInstance } from '../types'
 
 const useOutboundClickListener = (matomoInstance: MatomoInstance): void => {
   const handleOutboundClick = (event: MouseEvent) => {
-    if (!event.target) {
-      return
-    }
-
     const { target } = event
-    const { nodeName } = target as HTMLElement
 
-    if (nodeName !== 'A') {
+    if (!(target instanceof HTMLAnchorElement)) {
       return
     }
 
-    const { href } = target as HTMLAnchorElement // We know from the nodeName that the element is an anchor
+    const { href } = target
 
     // Check if the click target differs from the current hostname, meaning it's external
     if (
       // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
-      !href?.match(
+      !href.match(
         new RegExp(
           `^(http://www.|https://www.|http://|https://)+(${window.location.hostname})`,
         ),
       )
     ) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
       matomoInstance.trackLink({ href })
     }
   }
