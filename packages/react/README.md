@@ -166,7 +166,7 @@ import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 
 const instance = createInstance({
   urlBase: "https://LINK.TO.DOMAIN",
-  enableLinkTracking: false // Important!
+  linkTracking: false // Important!
 });
 
 ReactDOM.render(
