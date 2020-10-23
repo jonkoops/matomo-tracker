@@ -25,6 +25,12 @@ describe('MatomoTracker', () => {
       matomo.pushInstruction('foo', 'bar', 1)
 
       expect(window._paq).toEqual([['foo', 'bar', 1]])
+
+      matomo.pushInstruction(() => {
+        'test'
+      })
+
+      expect(window._paq).toEqual([['foo', 'bar', 1], [expect.any(Function)]])
     })
   })
 })

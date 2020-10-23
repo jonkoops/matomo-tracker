@@ -40,7 +40,7 @@ function useMatomo() {
   }, [instance])
 
   const pushInstruction = useCallback(
-    (name: string, ...args: any[]) => {
+    (name: any, ...args: any[]) => {
       instance?.pushInstruction(name, ...args)
     },
     [instance],

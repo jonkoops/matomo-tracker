@@ -336,7 +336,7 @@ class MatomoTracker {
    * @param name The name of the instruction to be executed.
    * @param args The arguments to pass along with the instruction.
    */
-  pushInstruction(name: string, ...args: any[]): MatomoTracker {
+  pushInstruction(name: any, ...args: any[]): MatomoTracker {
     if (typeof window !== 'undefined') {
       // eslint-disable-next-line
       window._paq.push([name, ...args])

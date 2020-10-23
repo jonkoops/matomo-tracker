@@ -3,7 +3,7 @@ import * as types from './types'
 
 declare global {
   interface Window {
-    _paq: [string, ...any[]][]
+    _paq: [any, ...any[]][]
   }
 }
 
