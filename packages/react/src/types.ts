@@ -1,4 +1,5 @@
-import MatomoTracker, { types } from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@datapunt/matomo-tracker-js'
+import { UserOptions } from '@datapunt/js'
 
 export interface MatomoInstance {
   trackEvent: MatomoTracker['trackEvent']
@@ -9,12 +10,4 @@ export interface MatomoInstance {
   pushInstruction: MatomoTracker['pushInstruction']
 }
 
-export type InstanceParams = types.UserOptions
-
-export type TrackPageViewParams = types.TrackPageViewParams
-
-export type TrackEventParams = types.TrackEventParams
-
-export type TrackSiteSearchParams = types.TrackSiteSearchParams
-
-export type TrackLinkParams = types.TrackLinkParams
+export type InstanceParams = UserOptions

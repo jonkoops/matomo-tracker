@@ -1,11 +1,12 @@
 import { useCallback, useContext } from 'react'
-import MatomoContext from './MatomoContext'
 import {
   TrackEventParams,
   TrackLinkParams,
   TrackPageViewParams,
   TrackSiteSearchParams,
-} from './types'
+} from '@datapunt/js'
+import MatomoContext from './MatomoContext'
+
 import useOutboundClickListener from './utils/useOutboundClickListener'
 
 function useMatomo() {
