@@ -15,6 +15,8 @@ import {
 class MatomoTracker {
   mutationObserver?: MutationObserver
 
+  disabled: boolean
+
   constructor(userOptions: UserOptions) {
     if (!userOptions.urlBase) {
       throw new Error('Matomo urlBase is required.')
@@ -23,6 +25,7 @@ class MatomoTracker {
       throw new Error('Matomo siteId is required.')
     }
 
+    this.disabled = !!userOptions.disabled
     this.initialize(userOptions)
   }
 
@@ -337,7 +340,7 @@ class MatomoTracker {
    * @param args The arguments to pass along with the instruction.
    */
   pushInstruction(name: any, ...args: any[]): MatomoTracker {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && !this.disabled) {
       // eslint-disable-next-line
       window._paq.push([name, ...args])
     }

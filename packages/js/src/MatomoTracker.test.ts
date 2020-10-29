@@ -33,4 +33,19 @@ describe('MatomoTracker', () => {
       expect(window._paq).toEqual([['foo', 'bar', 1], [expect.any(Function)]])
     })
   })
+
+  describe('disabled', () => {
+    it('should not push the instruction', () => {
+      const matomo = new MatomoTracker({
+        urlBase: URL_BASE,
+        siteId: 1,
+        disabled: true,
+      })
+
+      window._paq = []
+      matomo.pushInstruction('foo', 'bar', 1)
+
+      expect(window._paq).toEqual([])
+    })
+  })
 })
