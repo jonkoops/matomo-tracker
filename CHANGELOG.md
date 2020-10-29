@@ -17,7 +17,7 @@ Prefix the change with one of these keywords:
 # UNRELEASED
 
 - Fixed: Use functions for getting information
-- Make tracking call to real noop
+- Fixed: Make tracking call to real noop
 
 ## [0.3.1]
 
