@@ -1427,9 +1427,9 @@
     pretty-format "^26.6.2"
 
 "@testing-library/react-hooks@^3.4.2":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.5.0.tgz#8d728f2d56d615935116385f3ff9335e3402e46b"
-  integrity sha512-PpztMzQ+h8hXwd9TtSx6H+D5sKv7sW0sRr0dOW3x9O5yNOHlg5Yi4uCMhYBuGYAHM7XJyceb+u4D3CgT8LotKg==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.7.0.tgz#6d75c5255ef49bce39b6465bf6b49e2dac84919e"
+  integrity sha512-TwfbY6BWtWIHitjT05sbllyLIProcysC0dF0q1bbDa7OHLC6A6rJOYJwZ13hzfz3O4RtOuInmprBozJRyyo7/g==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@types/testing-library__react-hooks" "^3.4.0"
