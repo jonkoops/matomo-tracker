@@ -295,7 +295,7 @@ class MatomoTracker {
   track({
     data = [],
     documentTitle = window.document.title,
-    href = window.location.href,
+    href,
     customDimensions = false,
   }: TrackParams): void {
     if (data.length) {
@@ -313,7 +313,7 @@ class MatomoTracker {
         )
       }
 
-      this.pushInstruction('setCustomUrl', href)
+      this.pushInstruction('setCustomUrl', href ?? window.location.href)
       this.pushInstruction('setDocumentTitle', documentTitle)
       this.pushInstruction(...(data as [string, ...any[]]))
     }
