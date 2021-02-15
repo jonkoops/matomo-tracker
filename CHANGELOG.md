@@ -14,7 +14,7 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
-## [Unreleased]
+## [0.4.0]
 
 - Added: Support React v17
 
