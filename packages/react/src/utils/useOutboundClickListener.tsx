@@ -25,10 +25,14 @@ const useOutboundClickListener = (matomoInstance: MatomoInstance): void => {
   }
 
   useEffect(() => {
-    window.document.addEventListener('click', handleOutboundClick)
+    window.document.addEventListener('click', handleOutboundClick, {
+      capture: true,
+    })
 
     return () =>
-      window.document.removeEventListener('click', handleOutboundClick)
+      window.document.removeEventListener('click', handleOutboundClick, {
+        capture: true,
+      })
   }, [])
 }
 
