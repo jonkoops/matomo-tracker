@@ -30,8 +30,7 @@
     "piwik",
     "tracking",
     "analytics",
-    "react",
-    "react native"
+    "react"
   ],
   "publishConfig": {
     "access": "public"
