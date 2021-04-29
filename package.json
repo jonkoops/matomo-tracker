@@ -1,15 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "build": "yarn build:ts && yarn build:ts:es",
+    "build": "npm run build:ts && npm run build:ts:es",
     "build:ts": "tsc -b packages/js packages/react",
     "build:ts:es": "tsc -b packages/js/tsconfig.es.json packages/react/tsconfig.es.json",
     "clean:generated": "find ./packages -name \"*.d.ts\" -type f -delete && find ./packages -name \"*.tsbuildinfo\" -type f -delete",
-    "start": "yarn build -w",
+    "start": "npm run build:ts -- --watch & npm run build:ts:es -- --watch",
     "lint": "eslint .",
     "test": "jest",
     "prettier": "prettier --write ./packages/**/**/*.{ts,tsx}",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "npm run build",
     "postinstall": "lerna link",
     "publish:canary": "lerna publish --canary",
     "publish:stable": "lerna publish"
@@ -46,6 +46,6 @@
     "typescript": "^4.0.2"
   },
   "engines": {
-    "node": "^14"
+    "node": "^16"
   }
 }
