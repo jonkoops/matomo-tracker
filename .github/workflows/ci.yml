@@ -1,32 +1,25 @@
 name: CI
-
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
-
+    branches: [master]
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
         job: [lint, test]
-
     steps:
     - uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - name: install
-      run: yarn install --frozen-lockfile
+        check-latest: true
 
-    - name: build
-      run: yarn build
-
-    - name: Run ${{ matrix.job }}
-      run: yarn ${{ matrix.job }}
+    - run: npm ci
+    - run: npm run build
+    - run: npm run ${{ matrix.job }}
