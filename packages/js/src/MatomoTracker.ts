@@ -104,12 +104,8 @@ class MatomoTracker {
     if (elements.length) {
       elements.forEach((element) => {
         element.addEventListener('click', () => {
-          const {
-            matomoCategory,
-            matomoAction,
-            matomoName,
-            matomoValue,
-          } = element.dataset
+          const { matomoCategory, matomoAction, matomoName, matomoValue } =
+            element.dataset
           if (matomoCategory && matomoAction) {
             this.trackEvent({
               category: matomoCategory,
