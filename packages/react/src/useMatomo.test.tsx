@@ -36,10 +36,10 @@ describe('useMatomo', () => {
     const mockedMatomoTracker = mocked(MatomoTracker)
     mockedMatomoTracker.mockImplementation(
       () =>
-        (({
+        ({
           trackEvent: trackEventMock,
           trackPageView: trackPageViewMock,
-        } as unknown) as MatomoTracker),
+        } as unknown as MatomoTracker),
     )
 
     const instance = createInstance({
