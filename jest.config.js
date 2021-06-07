@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   moduleDirectories: ['node_modules', 'src'],
   testPathIgnorePatterns: ['/node_modules/', '/lib/', '/es/', '/examples/'],
