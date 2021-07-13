@@ -243,7 +243,7 @@ class MatomoTracker {
   // Return all ecommerce items currently in the untracked ecommerce order.
   // https://matomo.org/docs/ecommerce-analytics
   getEcommerceItems(): EcommerceItems {
-    return this.callMethod('getEcommerceItems') as EcommerceItems
+    return (this.callMethod('getEcommerceItems') || {}) as EcommerceItems
   }
 
   // Tracks an Ecommerce order containing items added via addEcommerceItem.
