@@ -58,8 +58,6 @@ class MatomoTracker {
       return
     }
 
-    this.asyncTrackers = window.Matomo.getAsyncTrackers()
-
     this.pushInstruction(
       'setTrackerUrl',
       trackerUrl ?? `${normalizedUrlBase}matomo.php`,
@@ -92,6 +90,9 @@ class MatomoTracker {
     scriptElement.async = true
     scriptElement.defer = true
     scriptElement.src = srcUrl || `${normalizedUrlBase}matomo.js`
+    scriptElement.onload = () => {
+      this.asyncTrackers = window.Matomo.getAsyncTrackers()
+    }
 
     if (scripts && scripts.parentNode) {
       scripts.parentNode.insertBefore(scriptElement, scripts)
