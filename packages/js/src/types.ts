@@ -1,3 +1,5 @@
+export type AsyncTracker = any
+
 export interface CustomDimension {
   id: number
   value: string
@@ -71,3 +73,8 @@ export interface SetEcommerceViewParams {
   productCategory?: string
   productPrice?: number
 }
+
+export type EcommerceItems = Record<
+  number,
+  [string, string, string, number, number]
+>

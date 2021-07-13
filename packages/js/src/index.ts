@@ -4,6 +4,9 @@ import * as types from './types'
 declare global {
   interface Window {
     _paq: [string, ...any[]][]
+    Matomo: {
+      getAsyncTrackers: () => types.AsyncTracker[]
+    }
   }
 }
 
