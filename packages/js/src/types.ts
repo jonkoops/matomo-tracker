@@ -1,3 +1,9 @@
+// `customData` is afaik meant to be used for custom dimensions.
+// Matomo looks for keys which start which match the pattern /^dimension\d+$/
+// and extracts the dimension ID from it.
+// Example: { dimension1: 'some value' }
+export type CustomData = Record<string, unknown>
+
 export interface CustomDimension {
   id: number
   value: string
@@ -24,6 +30,9 @@ export interface TrackPageViewParams {
   documentTitle?: string
   href?: string | Location
   customDimensions?: boolean | CustomDimension[]
+  customTitle?: string
+  customData?: CustomData
+  callback?: () => void
 }
 
 export interface TrackParams extends TrackPageViewParams {

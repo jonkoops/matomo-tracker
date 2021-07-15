@@ -172,11 +172,21 @@ class MatomoTracker {
     action,
     name,
     value,
+    customData,
+    callback,
     ...otherParams
-  }: TrackEventParams): void {
+  }: Omit<TrackEventParams, 'customTitle'>): void {
     if (category && action) {
       this.track({
-        data: [TRACK_TYPES.TRACK_EVENT, category, action, name, value],
+        data: [
+          TRACK_TYPES.TRACK_EVENT,
+          category,
+          action,
+          name,
+          value,
+          customData,
+          callback,
+        ],
         ...otherParams,
       })
     } else {
@@ -210,8 +220,16 @@ class MatomoTracker {
 
   // Tracks page views
   // https://developer.matomo.org/guides/spa-tracking#tracking-a-new-page-view
-  trackPageView(params?: TrackPageViewParams): void {
-    this.track({ data: [TRACK_TYPES.TRACK_VIEW], ...params })
+  trackPageView({
+    customTitle,
+    customData,
+    callback,
+    ...params
+  }: TrackPageViewParams = {}): void {
+    this.track({
+      data: [TRACK_TYPES.TRACK_VIEW, customTitle, customData, callback],
+      ...params,
+    })
   }
 
   // Adds a product to an Ecommerce order to be tracked via trackEcommerceOrder.
