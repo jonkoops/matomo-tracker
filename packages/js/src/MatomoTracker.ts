@@ -35,6 +35,7 @@ class MatomoTracker {
     disabled,
     heartBeat,
     linkTracking = true,
+    alwaysUseSendBeacon = true,
     configurations = {},
   }: UserOptions) {
     const normalizedUrlBase =
@@ -77,6 +78,9 @@ class MatomoTracker {
     // // measure outbound links and downloads
     // // might not work accurately on SPAs because new links (dom elements) are created dynamically without a server-side page reload.
     this.enableLinkTracking(linkTracking)
+
+    // If enabled, always use sendBeacon if the browser supports it
+    this.pushInstruction('alwaysUseSendBeacon', alwaysUseSendBeacon)
 
     const doc = document
     const scriptElement = doc.createElement('script')
