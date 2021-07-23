@@ -29,7 +29,6 @@ const tracker = new MatomoTracker({
     seconds: 10 // optional, default value: `15
   },
   linkTracking: false, // optional, default value: true
-  alwaysUseSendBeacon: true, // optional, default value: true
   configurations: { // optional, default value: {}
     // any valid matomo configuration, all below are optional
     disableCookies: true,
@@ -158,20 +157,6 @@ tracker.trackEvents()
 // Track page views
 tracker.trackPageView()
 ```
-
-## Asynchronous Tracking
-
-Matomo is working asynchronously by concept. If you need to wait until a tracking operation is done, you can pass an callback to `trackPageView` or `trackEvent`
-
-```typescript
-trackPageView({
-  callback: () => {
-    console.log('done')
-  },
-})
-```
-
-If you're making a page redirect immediately after the tracking operation is done, you should consider to set `alwaysUseSendBeacon` to `false`.
 
 ## References
 
