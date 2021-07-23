@@ -29,6 +29,7 @@ const tracker = new MatomoTracker({
     seconds: 10 // optional, default value: `15
   },
   linkTracking: false, // optional, default value: true
+  alwaysUseSendBeacon: true, // optional, default value: true
   configurations: { // optional, default value: {}
     // any valid matomo configuration, all below are optional
     disableCookies: true,
