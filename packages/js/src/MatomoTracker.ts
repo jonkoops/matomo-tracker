@@ -214,8 +214,17 @@ class MatomoTracker {
 
   // Tracks outgoing links to other sites and downloads
   // https://developer.matomo.org/guides/tracking-javascript-guide#enabling-download-outlink-tracking
-  trackLink({ href, linkType = 'link' }: TrackLinkParams): void {
-    this.pushInstruction(TRACK_TYPES.TRACK_LINK, href, linkType)
+  trackLink({
+    href,
+    linkType = 'link',
+    customData,
+    callback,
+    ...params
+  }: TrackLinkParams): void {
+    this.track({
+      data: [TRACK_TYPES.TRACK_LINK, href, linkType, customData, callback],
+      ...params,
+    })
   }
 
   // Tracks page views

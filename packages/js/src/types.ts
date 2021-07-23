@@ -46,7 +46,7 @@ export interface TrackEventParams extends TrackPageViewParams {
   value?: number
 }
 
-export interface TrackLinkParams {
+export interface TrackLinkParams extends TrackPageViewParams {
   href: string
   linkType?: 'download' | 'link'
 }
