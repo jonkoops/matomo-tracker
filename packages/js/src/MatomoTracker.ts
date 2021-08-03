@@ -1,6 +1,7 @@
 import { TRACK_TYPES } from './constants'
 import {
   AddEcommerceItemParams,
+  RemoveEcommerceItemParams,
   CustomDimension,
   SetEcommerceViewParams,
   TrackEcommerceOrderParams,
@@ -232,6 +233,18 @@ class MatomoTracker {
       productPrice,
       productQuantity,
     )
+  }
+
+  // Removes a product from an Ecommerce order to be tracked via trackEcommerceOrder.
+  // https://matomo.org/docs/ecommerce-analytics
+  removeEcommerceItem({ sku }: RemoveEcommerceItemParams): void {
+    this.pushInstruction('removeEcommerceItem', sku)
+  }
+
+  // Removes all products from an Ecommerce order to be tracked via trackEcommerceOrder.
+  // https://matomo.org/docs/ecommerce-analytics
+  clearEcommerceCart(): void {
+    this.pushInstruction('clearEcommerceCart')
   }
 
   // Tracks an Ecommerce order containing items added via addEcommerceItem.
