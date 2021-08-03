@@ -3,6 +3,7 @@ import {
   AsyncTracker,
   EcommerceItems,
   AddEcommerceItemParams,
+  RemoveEcommerceItemParams,
   CustomDimension,
   SetEcommerceViewParams,
   TrackEcommerceOrderParams,
@@ -252,6 +253,17 @@ class MatomoTracker {
   // https://matomo.org/docs/ecommerce-analytics
   getEcommerceItems(): EcommerceItems {
     return (this.callMethod('getEcommerceItems') || {}) as EcommerceItems
+  }
+  // Removes a product from an Ecommerce order to be tracked via trackEcommerceOrder.
+  // https://matomo.org/docs/ecommerce-analytics
+  removeEcommerceItem({ sku }: RemoveEcommerceItemParams): void {
+    this.pushInstruction('removeEcommerceItem', sku)
+  }
+
+  // Removes all products from an Ecommerce order to be tracked via trackEcommerceOrder.
+  // https://matomo.org/docs/ecommerce-analytics
+  clearEcommerceCart(): void {
+    this.pushInstruction('clearEcommerceCart')
   }
 
   // Tracks an Ecommerce order containing items added via addEcommerceItem.
