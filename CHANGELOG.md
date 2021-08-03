@@ -15,7 +15,7 @@ Prefix the change with one of these keywords:
 - _Security_: in case of vulnerabilities.
 
 ## [0.5.0]
-
+- Added: Support outbound links on `<a>` child elements.
 - Added: `removeEcommerceItem` and `clearEcommerceCart` action
 
 ## [0.4.0]
