@@ -17,6 +17,7 @@ Prefix the change with one of these keywords:
 ## [0.5.0]
 
 - Added: Support callback and other possible data
+- Added: `removeEcommerceItem` and `clearEcommerceCart` action
 
 ## [0.4.0]
 

@@ -74,6 +74,10 @@ export interface AddEcommerceItemParams {
   productQuantity?: number
 }
 
+export interface RemoveEcommerceItemParams {
+  sku: string
+}
+
 export interface SetEcommerceViewParams {
   sku: string | boolean
   productName?: string | boolean
