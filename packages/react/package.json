@@ -39,7 +39,7 @@
     "@datapunt/matomo-tracker-js": "^0.4.0"
   },
   "peerDependencies": {
-    "react": "^16.8.6 || ^17.0.0"
+    "react": ">= 16.8.0"
   },
   "gitHead": "cc08cc56b79af67a93de78632dc98b9ef2588871"
 }
