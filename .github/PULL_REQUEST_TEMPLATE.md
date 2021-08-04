@@ -1,4 +1,4 @@
-## Amsterdam styled components pull request
+## Matomo tracker pull request
 
 Before opening a pull request, please ensure:
 
