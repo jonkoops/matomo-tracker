@@ -14,13 +14,6 @@
     "publish:canary": "lerna publish --canary",
     "publish:stable": "lerna publish"
   },
-  "keywords": [
-    "matomo",
-    "piwik",
-    "tracking",
-    "analytics",
-    "react"
-  ],
   "workspaces": [
     "packages/*"
   ],
