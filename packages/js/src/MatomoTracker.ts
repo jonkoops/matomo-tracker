@@ -66,8 +66,12 @@ class MatomoTracker {
       this.pushInstruction('setUserId', userId)
     }
 
-    Object.entries(configurations).forEach((entry) => {
-      this.pushInstruction(entry[0], entry[1])
+    Object.entries(configurations).forEach(([name, instructions]) => {
+      if (instructions instanceof Array) {
+        this.pushInstruction(name, ...instructions)
+      } else {
+        this.pushInstruction(name, instructions)
+      }
     })
 
     // accurately measure the time spent on the last pageview of a visit
