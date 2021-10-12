@@ -68,6 +68,7 @@ class MatomoTracker {
 
     Object.entries(configurations).forEach(([name, instructions]) => {
       if (instructions instanceof Array) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         this.pushInstruction(name, ...instructions)
       } else {
         this.pushInstruction(name, instructions)
