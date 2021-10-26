@@ -14,6 +14,10 @@ Prefix the change with one of these keywords:
 - _Fixed_: for any bug fixes.
 - _Security_: in case of vulnerabilities.
 
+## [Unreleased]
+
+- Fixed: Made `trackPageView` `params` argument optional
+
 ## [0.5.1]
 
 - Fixed: support array of instructions on initial options on `configurations` object
