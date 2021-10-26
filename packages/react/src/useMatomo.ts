@@ -12,7 +12,7 @@ function useMatomo() {
   const instance = useContext(MatomoContext)
 
   const trackPageView = useCallback(
-    (params: TrackPageViewParams) => instance?.trackPageView(params),
+    (params?: TrackPageViewParams) => instance?.trackPageView(params),
     [instance],
   )
 
