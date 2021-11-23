@@ -10,7 +10,7 @@ import useMatomo from './useMatomo'
 jest.mock('@datapunt/matomo-tracker-js')
 
 describe('useMatomo', () => {
-  const JustAComponent = () => {
+  const JustAComponent = function () {
     const { trackPageView, trackEvent } = useMatomo()
 
     // Track page view after page load
@@ -47,7 +47,7 @@ describe('useMatomo', () => {
       siteId: 3,
     })
 
-    const Component = () => {
+    const Component = function () {
       return (
         <MatomoProvider value={instance}>
           <JustAComponent />

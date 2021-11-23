@@ -6,7 +6,10 @@ export interface MatomoProviderProps {
   value: MatomoInstance
 }
 
-const MatomoProvider: React.FC<MatomoProviderProps> = ({ children, value }) => {
+const MatomoProvider: React.FC<MatomoProviderProps> = function ({
+  children,
+  value,
+}) {
   const Context = MatomoContext
 
   return <Context.Provider value={value}>{children}</Context.Provider>
