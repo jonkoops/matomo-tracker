@@ -17,6 +17,7 @@ Prefix the change with one of these keywords:
 ## [Unreleased]
 
 - Fixed: Made `trackPageView` `params` argument optional
+- Added: Allow delaying library loading when `disabled` is set to true with a new `enableTracking` function exposed in `useMatomo`
 
 ## [0.5.1]
 
