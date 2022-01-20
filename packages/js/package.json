@@ -18,13 +18,13 @@
   "files": [
     "lib",
     "es",
-    "bundle.min.js",
+    "src",
     "README.md"
   ],
   "sideEffects": false,
   "contributors": [
-    "Chris van Mook <chrisvanmook@gmail.com> ()",
-    "Roy Derks <hello@hackteam.io> (https://twitter.com/gethackteam)"
+    "Chris van Mook <chrisvanmook@gmail.com>",
+    "Jon Koops <jonkoops@gmail.com>"
   ],
   "keywords": [
     "matomo",
