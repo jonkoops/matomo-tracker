@@ -17,6 +17,7 @@ Prefix the change with one of these keywords:
 ## [Unreleased]
 
 - Fixed: Made `trackPageView` `params` argument optional
+- Fixed: Added support for React 18 types with explicit `children` prop in `MatomoProviderProps`
 
 ## [0.5.1]
 
