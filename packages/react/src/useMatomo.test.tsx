@@ -1,6 +1,5 @@
 import MatomoTracker from '@datapunt/matomo-tracker-js'
-import { fireEvent, render } from '@testing-library/react'
-import { renderHook } from '@testing-library/react-hooks'
+import { fireEvent, render, renderHook } from '@testing-library/react'
 import React from 'react'
 import { mocked } from 'ts-jest/utils'
 import createInstance from './instance'
