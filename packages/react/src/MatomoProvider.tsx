@@ -3,7 +3,7 @@ import MatomoContext from './MatomoContext'
 import { MatomoInstance } from './types'
 
 export interface MatomoProviderProps {
-  value: MatomoInstance,
+  value: MatomoInstance
   children: React.ReactNode
 }
 
