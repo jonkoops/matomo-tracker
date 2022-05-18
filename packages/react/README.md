@@ -184,7 +184,40 @@ const MyApp = () => {
     // Render components
   )
 }
+```
 
+## Delay loading Matomo
+
+In order to be GDPR compliant, users must give consent before behavioural tracking is applied to them. To achieve this you should pass `disabled` set to true when initializing your Matomo instance and then call `enableTracking` once you get their approval:
+
+```tsx
+import { MatomoProvider, createInstance, useMatomo } from '@datapunt/matomo-tracker-react'
+import { userHasConsented } from 'your-own-tracking-acceptance-library'
+
+const instance = createInstance({
+  urlBase: "https://LINK.TO.DOMAIN",
+  disabled: true, // Prevents the matomo provided library from loading on instantiation
+});
+
+ReactDOM.render(
+  <MatomoProvider value={instance}>
+    <MyApp />
+  </MatomoProvider>
+)
+
+const MyApp = () => {
+  const { enableTracking } = useMatomo()
+
+  React.useEffect(() => {
+    if(userHasConsented()) {
+      enableTracking()
+    }
+  }, [])
+
+  return (
+    // Render components
+  )
+}
 ```
 
 ## References
