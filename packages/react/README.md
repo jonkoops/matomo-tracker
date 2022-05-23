@@ -5,7 +5,7 @@ Stand alone library for using Matamo tracking in React projects
 ## Installation
 
 ```sh
-npm install @datapunt/matomo-tracker-react
+npm install @jonkoops/matomo-tracker-react
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install @datapunt/matomo-tracker-react
 Before you're able to use this Matomo Tracker you need to create a Matomo instance with your project specific details, and wrap your application with the `MatomoProvider` that this package exposes.
 
 ```tsx
-import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
+import { MatomoProvider, createInstance } from '@jonkoops/matomo-tracker-react'
 
 const instance = createInstance({
   urlBase: 'https://LINK.TO.DOMAIN',
@@ -46,7 +46,7 @@ After wrapping your application with the `MatomoProvider` you can use the `useMa
 
 ```tsx
 import React from 'react'
-import { useMatomo } from '@datapunt/matomo-tracker-react'
+import { useMatomo } from '@jonkoops/matomo-tracker-react'
 
 const MyPage = () => {
   const { trackPageView, trackEvent } = useMatomo()
@@ -75,7 +75,7 @@ By default the Matomo Tracker will send the window's document title and location
 
 ```tsx
 import React from 'react'
-import { useMatomo } from '@datapunt/matomo-tracker-react'
+import { useMatomo } from '@jonkoops/matomo-tracker-react'
 
 const MyPage = () => {
   const { trackPageView, trackEvent } = useMatomo()
@@ -111,7 +111,7 @@ And you can do the same for the `trackEvent` method:
 
 ```tsx
 import React from 'react'
-import { useMatomo } from '@datapunt/matomo-tracker-react'
+import { useMatomo } from '@jonkoops/matomo-tracker-react'
 
 const MyPage = () => {
   const { trackEvent } = useMatomo()
@@ -162,7 +162,7 @@ pushInstruction('setUserId', 'USER_ID_HERE');
 Matomo provides the option to track outbound link, however, this implementation is flaky for a SPA (Single Page Application) **without** SSR (Server Side Rendering) across different versions of Matomo. Therefore you can use the `enableLinkTracking` method to listen to outbound clicks on anchor elements. This method should be placed on a component directly below your `MatomoProvider` on a component that's rendered on every page view. Also, make sure to disable the `linkTracking` option on the instance passed to the provider to prevent Matomo from catching some link clicks:
 
 ```tsx
-import { MatomoProvider, createInstance, useMatomo } from '@datapunt/matomo-tracker-react'
+import { MatomoProvider, createInstance, useMatomo } from '@jonkoops/matomo-tracker-react'
 
 const instance = createInstance({
   urlBase: "https://LINK.TO.DOMAIN",

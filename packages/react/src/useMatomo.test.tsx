@@ -1,4 +1,4 @@
-import MatomoTracker from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@jonkoops/matomo-tracker'
 import { fireEvent, render, renderHook } from '@testing-library/react'
 import React from 'react'
 import { mocked } from 'ts-jest/utils'
@@ -6,7 +6,7 @@ import createInstance from './instance'
 import MatomoProvider from './MatomoProvider'
 import useMatomo from './useMatomo'
 
-jest.mock('@datapunt/matomo-tracker-js')
+jest.mock('@jonkoops/matomo-tracker')
 
 describe('useMatomo', () => {
   const JustAComponent = function () {

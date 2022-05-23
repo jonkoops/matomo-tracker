@@ -1,19 +1,19 @@
 {
-  "name": "@datapunt/matomo-tracker-js",
+  "name": "@jonkoops/matomo-tracker",
   "version": "0.6.0",
   "description": "Matomo tracker for frontend projects",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MPL-2.0",
-  "author": "Datapunt Amsterdam",
-  "homepage": "https://github.com/Amsterdam/matomo-tracker#readme",
+  "author": "Jon Koops",
+  "homepage": "https://github.com/jonkoops/matomo-tracker#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amsterdam/matomo-tracker.git",
+    "url": "git+https://github.com/jonkoops/matomo-tracker.git",
     "directory": "packages/js"
   },
   "bugs": {
-    "url": "https://github.com/Amsterdam/matomo-tracker/issues"
+    "url": "https://github.com/jonkoops/matomo-tracker/issues"
   },
   "files": [
     "lib",

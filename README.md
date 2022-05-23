@@ -6,8 +6,8 @@ Monorepo for using Matomo tracking in frontend projects
 
 This monorepo hosts two Matomo projects for tracking (user) analytics in frontend projects, either with (vanilla) JavaScript or React.
 
-- [@datapunt/matomo-tracker-js](https://github.com/Amsterdam/matomo-tracker/tree/main/packages/js)
-- [@datapunt/matomo-tracker-react](https://github.com/Amsterdam/matomo-tracker/tree/main/packages/react)
+- [@jonkoops/matomo-tracker](https://github.com/jonkoops/matomo-tracker/tree/main/packages/js)
+- [@jonkoops/matomo-tracker-react](https://github.com/jonkoops/matomo-tracker/tree/main/packages/react)
 
 ## References
 

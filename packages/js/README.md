@@ -5,7 +5,7 @@ Stand alone library for using Matamo tracking in frontend projects
 ## Installation
 
 ```sh
-npm install @datapunt/matomo-tracker-js
+npm install @jonkoops/matomo-tracker
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ Before you're able to use this Matomo Tracker you need to initialize Matomo with
 **Initialize:**
 
 ```ts
-import MatomoTracker from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@jonkoops/matomo-tracker'
 
 const tracker = new MatomoTracker({
   urlBase: 'https://LINK.TO.DOMAIN',
@@ -41,7 +41,7 @@ const tracker = new MatomoTracker({
 After initialization you can use the Matomo Tracker to track events and page views like this:
 
 ```ts
-import MatomoTracker from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@jonkoops/matomo-tracker'
 
 const tracker = new MatomoTracker({
   /* setup */
@@ -66,7 +66,7 @@ tracker.trackLink({
 By default the Matomo Tracker will send the window's document title and location, but you're able to send your own values. Also, [custom dimensions](https://matomo.org/docs/custom-dimensions/) can be used:
 
 ```ts
-import MatomoTracker from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@jonkoops/matomo-tracker'
 
 const tracker = new MatomoTracker({
   /* setup */
@@ -107,7 +107,7 @@ tracker.trackLink({
 Next to the tracking of events, this project also supports tracking site searches:
 
 ```ts
-import MatomoTracker from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@jonkoops/matomo-tracker'
 
 const tracker = new MatomoTracker({
   /* setup */
@@ -145,7 +145,7 @@ Or if you want to stay away from inline JavaScript events, this project can be u
 ```
 
 ```ts
-import MatomoTracker from '@datapunt/matomo-tracker-js'
+import MatomoTracker from '@jonkoops/matomo-tracker'
 
 const tracker = new MatomoTracker({
   /* setup */

@@ -6,7 +6,7 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@datapunt/*": ["packages/*/src"]
+      "@jonkoops/*": ["packages/*/src"]
     },
     "composite": true,
     "sourceMap": true,
