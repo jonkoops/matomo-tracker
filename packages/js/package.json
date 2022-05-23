@@ -1,6 +1,6 @@
 {
   "name": "@jonkoops/matomo-tracker",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Matomo tracker for frontend projects",
   "main": "lib/index.js",
   "module": "es/index.js",
