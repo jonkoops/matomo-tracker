@@ -23,13 +23,13 @@ describe('MatomoTracker', () => {
   })
 
   it('throws an error if no urlBase is passed in options', () => {
-    expect(() => new MatomoTracker({ siteId: 1 } as UserOptions)).toThrowError()
+    expect(() => new MatomoTracker({ siteId: 1 } as UserOptions)).toThrow()
   })
 
   it('throws an error if no siteId is passed in options', () => {
     expect(
       () => new MatomoTracker({ urlBase: URL_BASE } as UserOptions),
-    ).toThrowError()
+    ).toThrow()
   })
 
   describe('pushInstruction', () => {
