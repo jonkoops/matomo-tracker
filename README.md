@@ -1,5 +1,8 @@
 # Matomo Tracker
 
+> **Warning**
+> This repository is no longer maintained. I no longer use Matomo, nor do I have enough time between projects to take care of these libraries.
+
 Monorepo for using Matomo tracking in frontend projects
 
 ## Content
